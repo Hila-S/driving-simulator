@@ -4,30 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class CarCollision : MonoBehaviour
+public class CarCollision : WarningDisplayer
 {
-    private float timer = 0.0f;
-    private float howLongToDisplay = 5.0f;
     private String colText = "You have collided with the sidewalk!";
 
-    public Text text;
-    public GameObject warningCanvas;
-
-    void Start()
-    {
-        warningCanvas.SetActive(false);
-        text.text = colText;
-    }
-
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer > howLongToDisplay)
-        {
-            warningCanvas.SetActive(false);
-            timer = 0.0f;
-        }
-    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -35,9 +15,9 @@ public class CarCollision : MonoBehaviour
         if (collision.gameObject.name == "Road_1_line" || collision.gameObject.name == "Crossroads_1_lines_walk" ||
             collision.gameObject.name == "Crossroads_1_lines_circ" || collision.gameObject.name == "Road_1_line_turn")
         {
+            text.text = colText;
             //If the GameObject's name matches the one you suggest, output this message in the console
-            //Debug.Log("Do something else here");
-            warningCanvas.SetActive(true);
+            displayWarning(colText);
         }
     }
 }
