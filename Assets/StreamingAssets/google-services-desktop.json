@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "456348557798",
+    "project_id": "driving-simulator-new",
+    "storage_bucket": "driving-simulator-new.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456348557798:android:7852d836da7687c57cb627",
+        "android_client_info": {
+          "package_name": "com.google.firebse.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456348557798-2v48hiqcsgoui9l0fqpcv3u9mpm16tro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAYsSNNrxTkDL733X-z2PAlJOiT-nIj6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456348557798-2v48hiqcsgoui9l0fqpcv3u9mpm16tro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
