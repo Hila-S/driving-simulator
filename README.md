@@ -1,2 +1,2 @@
 # driving-simulator
-final project
+the final project
