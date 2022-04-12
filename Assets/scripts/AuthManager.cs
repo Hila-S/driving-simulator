@@ -1,5 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
+
+public class AuthManager : MonoBehaviour
+{
+
+}
+
+/*
+using System.Collections;
+using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using TMPro;
@@ -192,3 +201,4 @@ public class AuthManager : MonoBehaviour
         }
     }
 }
+*/

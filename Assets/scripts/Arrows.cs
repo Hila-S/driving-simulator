@@ -11,6 +11,7 @@ public class Arrows : MonoBehaviour
     public Sprite right_arrow;
     public Sprite left_arrow;
     public Sprite u_turn_arrow;
+    private int rInt;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class Arrows : MonoBehaviour
     {
         if (col.gameObject.name == "directions-rls")
         {
-            int rInt = Range(0, 2); //for ints
+            rInt = Range(0, 2); //for ints
             if (rInt == 0)
             {
                 direction_img.GetComponent<Image>().sprite = up_arrow;
@@ -43,7 +44,7 @@ public class Arrows : MonoBehaviour
         }
         if (col.gameObject.name == "directions-rlsu")
         {
-            int rInt = Range(0, 3); //for ints
+            rInt = Range(0, 3); //for ints
             if (rInt == 0)
             {
                 direction_img.GetComponent<Image>().sprite = up_arrow;
@@ -62,5 +63,9 @@ public class Arrows : MonoBehaviour
             }
         }
 
+    }
+    public int GetDirection()
+    {
+        return rInt;
     }
 }
