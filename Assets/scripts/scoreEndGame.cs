@@ -6,25 +6,30 @@ using System;
 
 public class scoreEndGame : MonoBehaviour
 {
-    //public Text text;
-    //public GameObject scoreCanvas;
-    //private ErrorCounting errorCounting;
-    // Use this for initialization
-    //void Start()
-    //{
-        //errorCounting = GameObject.Find("ErrorCounting").GetComponent<ErrorCounting>();
-        //int num = errorCounting.GetErrorDirections();
-        //Debug.Log("cGetErrorDirections:" + num);
-        //scoreCanvas.SetActive(false);
-        //score();
-    //}
-    /*
-    void score()
+    // private ErrorCounting errorCounting;
+    GameObject errorCountingScore;
+    ErrorCounting errorCounting;
+    public Text text;
+    public GameObject scoreCanvas;
+
+    void Start()
     {
-        int num = errorCounting.GetErrorDirections();
-        string newString = "ErrorDirections = " + num;
-        text.text = newString;
-        scoreCanvas.SetActive(true);
+        errorCountingScore = GameObject.Find("ErrorCountingScore");
+        if (errorCountingScore == null)
+            Debug.Log("error");
+        else
+        {
+            errorCounting = errorCountingScore.GetComponent<ErrorCounting>();
+            int numErrorDirections = errorCounting.GetErrorDirections();
+            int numCollisions = errorCounting.GetNumCollisions();
+            int numTrafficSign = errorCounting.GetNumErrorTrafficSign();
+            int numTrafficLaws = errorCounting.GetNumErrorTrafficLaws();
+            //Debug.Log("GetErrorDirections:" + numErrorDirections);
+            string newString = "Error Directions: " + numErrorDirections + "\nCollisions: " + numCollisions
+                + "\nError Traffic Sign: " + numTrafficSign + "\nError Traffic Laws: " + numTrafficLaws;
+            text.text = newString;
+            scoreCanvas.SetActive(true);
+        }
     }
-    */
 }
+    

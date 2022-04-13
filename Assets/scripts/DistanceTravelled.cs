@@ -17,7 +17,7 @@ public class DistanceTravelled : MonoBehaviour
     {
         distanceTravelled += Vector3.Distance(transform.position, lastPosition) * 3.5f;
         lastPosition = transform.position;
-        if (distanceTravelled > 500)
+        if (distanceTravelled > 100)
             SceneManager.LoadScene("EndGame");
     }
 }

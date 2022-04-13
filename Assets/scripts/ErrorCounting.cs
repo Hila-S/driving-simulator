@@ -12,10 +12,16 @@ public class ErrorCounting : MonoBehaviour
     CheckSpeed checkSpeed;
     WrongLane wrongLane;
     SeparationLine separationLine;
-
-
+    StopSign stopSign;
 
     private int counterErrorDirections = 0;
+    int counterHumanCollisions = 0;
+    int counterCollisions = 0;
+    int counterErrorRedLight = 0;
+    int counterErrorSpeed = 0;
+    int counterErrorWrongLane = 0;
+    int counterErrorSeparationLine = 0;
+    int counterErrorStopSign = 0;
 
 
     void Awake()
@@ -28,18 +34,21 @@ public class ErrorCounting : MonoBehaviour
         checkSpeed = Free_Racing_Car_Blue.GetComponent<CheckSpeed>();
         wrongLane = Free_Racing_Car_Blue.GetComponent<WrongLane>();
         separationLine = Free_Racing_Car_Blue.GetComponent<SeparationLine>();
+        stopSign = Free_Racing_Car_Blue.GetComponent<StopSign>();
     }
 
     // Update is called once per frame
     void Update()
     {
         counterErrorDirections = checkDirections.GetNumErrorDirction();
-        int counterHumanCollisions = humanCollision.GetNumHumanCollisions();
-        int counterCollisions = carCollision.GetNumHumanCollisions();
-        int counterErrorRedLight = redLight.GetNumErrorRedLight();
-        int counterErrorSpeed = checkSpeed.GetNumErrorSpeed();
-        int counterErrorWrongLane = wrongLane.GetNumErrorWrongLane();
-        int counterErrorSeparationLine = separationLine.GetNumErrorSeparationLine();
+        counterHumanCollisions = humanCollision.GetNumHumanCollisions();
+        counterCollisions = carCollision.GetNumHumanCollisions();
+        counterErrorRedLight = redLight.GetNumErrorRedLight();
+        counterErrorSpeed = checkSpeed.GetNumErrorSpeed();
+        counterErrorWrongLane = wrongLane.GetNumErrorWrongLane();
+        counterErrorSeparationLine = separationLine.GetNumErrorSeparationLine();
+        counterErrorStopSign = stopSign.GetNumErrorStopSign();
+
         /*
         if(counterErrorDirections>=1)
             Debug.Log("counterErrorDirections:" + counterErrorDirections);
@@ -58,4 +67,23 @@ public class ErrorCounting : MonoBehaviour
     {
         return counterErrorDirections;
     }
+
+    public int GetNumCollisions()
+    {
+        int num = counterHumanCollisions + counterCollisions;
+        return num;
+    }
+
+    public int GetNumErrorTrafficSign()
+    {
+        int num = counterErrorSpeed + counterErrorStopSign;
+        return num;
+    }
+
+    public int GetNumErrorTrafficLaws()
+    {
+        int num = counterErrorWrongLane + counterErrorSeparationLine + counterErrorRedLight;
+        return num;
+    }
+
 }

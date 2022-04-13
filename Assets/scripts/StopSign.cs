@@ -7,6 +7,7 @@ public class StopSign : MonoBehaviour
     private bool stopped = false;
     public Rigidbody target; // car
     private float speed = 0.0f;
+    private int counterError = 0;
 
     private void Update()
     {
@@ -28,9 +29,16 @@ public class StopSign : MonoBehaviour
         if (col.gameObject.name == "StopSignLine")
         {
             if (!stopped)
+            {
                 Debug.Log("didnt stop");
+                counterError++;
+            }
             stopped = false;
         }
 
+    }
+    public int GetNumErrorStopSign()
+    {
+        return counterError;
     }
 }

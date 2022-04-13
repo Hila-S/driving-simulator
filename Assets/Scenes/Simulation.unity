@@ -7677,7 +7677,7 @@ GameObject:
   - component: {fileID: 552232099}
   - component: {fileID: 552232098}
   m_Layer: 0
-  m_Name: ErrorCounting
+  m_Name: ErrorCountingScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
