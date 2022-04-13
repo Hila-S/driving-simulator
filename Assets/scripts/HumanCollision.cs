@@ -7,6 +7,7 @@ using System;
 public class HumanCollision : MonoBehaviour
 {
     private int counterCollisions = 0;
+
     void OnCollisionEnter(Collision collision)
     {
         //Check for a match with the specified name on any GameObject that collides with your GameObject

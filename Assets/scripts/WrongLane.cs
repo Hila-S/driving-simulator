@@ -9,9 +9,10 @@ public class WrongLane : WarningDisplayer
     // private float timer = 0.0f;
     //private float howLongToDisplay = 5.0f;
     private String colText = "Wrong Lane!";
+    private int counterErrorWrongLane = 0; 
 
-   // public Text text;
-   // public GameObject warningCanvas;
+    // public Text text;
+    // public GameObject warningCanvas;
 
     /*void Start()
     {
@@ -48,6 +49,7 @@ public class WrongLane : WarningDisplayer
                     Debug.Log("wrong lane");
                     //warningCanvas.SetActive(true);
                     displayWarning(colText);
+                    counterErrorWrongLane++;
                 }
             
 
@@ -73,4 +75,10 @@ public class WrongLane : WarningDisplayer
         }
 
     }
+
+    public int GetNumErrorWrongLane()
+    {
+        return counterErrorWrongLane;
+    }
+   
 }

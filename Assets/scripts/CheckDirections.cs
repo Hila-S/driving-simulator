@@ -14,6 +14,7 @@ public class CheckDirections : MonoBehaviour
     private const string RIGHT = "right";
     private const string BACK = "back";
     private const string FRONT = "front";
+    private int counterErrorDirction = 0;
 
     void Awake()
     {
@@ -24,7 +25,7 @@ public class CheckDirections : MonoBehaviour
     public void OnTriggerEnter(Collider col)
     {
 
-        if (col.gameObject.name == "Cube")
+        if (col.gameObject.name == "crossSection")
         {
             //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
@@ -79,8 +80,7 @@ public class CheckDirections : MonoBehaviour
 
     public void OnTriggerExit(Collider col)
     {
-
-        if (col.gameObject.name == "Cube")
+        if (col.gameObject.name == "crossSection")
         {
             //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
@@ -144,7 +144,11 @@ public class CheckDirections : MonoBehaviour
             else if ((enter == RIGHT && exit == LEFT) || (enter == LEFT && exit == RIGHT))
                 Debug.Log("bravo!");
             else
+            {
+                counterErrorDirction++;
                 Debug.Log("error in the direction!");
+            }
+                
         }
         if (direction == 1)
         {
@@ -154,7 +158,10 @@ public class CheckDirections : MonoBehaviour
                 Debug.Log("bravo!");
             }
             else
+            {
+                counterErrorDirction++;
                 Debug.Log("error in the direction!");
+            }
         }
         if (direction == 2)
         {
@@ -163,8 +170,16 @@ public class CheckDirections : MonoBehaviour
                 Debug.Log("bravo!");
             }
             else
+            {
+                counterErrorDirction++;
                 Debug.Log("error in the direction!");
+            }
         }
+    }
+    
+    public int GetNumErrorDirction()
+    {
+        return counterErrorDirction;
     }
 
 }
