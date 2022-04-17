@@ -136,8 +136,8 @@ public class CheckDirections : MonoBehaviour
     public void checkDir()
     {
         
-        int direction = arrows.GetDirection();
-        if (direction == 0)
+        String direction = arrows.GetDirection();
+        if (direction == "straight")
         {
             if ((enter == FRONT && exit == BACK) || (enter == BACK && exit == FRONT))
                 Debug.Log("bravo!");
@@ -150,7 +150,7 @@ public class CheckDirections : MonoBehaviour
             }
                 
         }
-        if (direction == 1)
+        if (direction == "left")
         {
             if ((enter == BACK && exit == LEFT) || (enter == LEFT && exit == FRONT)
                 || (enter == FRONT && exit == RIGHT) || (enter == RIGHT && exit == BACK))
@@ -163,7 +163,7 @@ public class CheckDirections : MonoBehaviour
                 Debug.Log("error in the direction!");
             }
         }
-        if (direction == 2)
+        if (direction == "right")
         {
             if ((enter == BACK && exit == RIGHT) || (enter == RIGHT && exit == FRONT) || (enter == FRONT && exit == LEFT) || (enter == LEFT && exit == BACK))
             {
