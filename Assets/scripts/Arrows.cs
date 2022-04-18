@@ -27,7 +27,7 @@ public class Arrows : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         direction_img.enabled = true;
-        if (col.gameObject.name == "directions-rls")
+        if (col.gameObject.name == "directions-rls" || col.gameObject.name == "directions-rls-70" || col.gameObject.name == "directions-rls-30")
         {
             rInt = Range(0, 3); //for ints
             if (rInt == 0)
@@ -46,7 +46,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
         }
-        if (col.gameObject.name == "directions-rl")
+        if (col.gameObject.name == "directions-rl" || col.gameObject.name == "directions-rl-70" || col.gameObject.name == "directions-rl-30")
         {
             rInt = Range(1, 3); //for ints
             if (rInt == 1)
@@ -60,7 +60,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
         }
-        if (col.gameObject.name == "directions-rs")
+        if (col.gameObject.name == "directions-rs" || col.gameObject.name == "directions-rs-70" || col.gameObject.name == "directions-rs-30")
         {
             rInt = Range(1, 3); //for ints
             if (rInt == 1)
@@ -74,7 +74,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
         }
-        if (col.gameObject.name == "directions-ls")
+        if (col.gameObject.name == "directions-ls" || col.gameObject.name == "directions-ls-70" || col.gameObject.name == "directions-ls-30")
         {
             rInt = Range(1, 3); //for ints
             if (rInt == 1)
@@ -88,17 +88,17 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = left_arrow;
             }
         }
-        if (col.gameObject.name == "directions-l")
+        if (col.gameObject.name == "directions-l" || col.gameObject.name == "directions-l-70" || col.gameObject.name == "directions-l-30")
         {
                 direction = LEFT;
                 direction_img.GetComponent<Image>().sprite = left_arrow;
         }
-        if (col.gameObject.name == "directions-r")
+        if (col.gameObject.name == "directions-r" || col.gameObject.name == "directions-r-70" || col.gameObject.name == "directions-r-30")
         {
             direction = RIGHT;
             direction_img.GetComponent<Image>().sprite = right_arrow;
         }
-        if (col.gameObject.name == "directions-s")
+        if (col.gameObject.name == "directions-s" || col.gameObject.name == "directions-s-70" || col.gameObject.name == "directions-s-30")
         {
             direction = STRAIGHT;
             direction_img.GetComponent<Image>().sprite = up_arrow;

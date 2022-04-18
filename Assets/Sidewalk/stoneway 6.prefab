@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8501774781248059093}
   - component: {fileID: 1675137259875572470}
   m_Layer: 0
-  m_Name: sidewalk
+  m_Name: separation line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 4734890915331731527}
   - component: {fileID: 8664129097017870680}
   m_Layer: 0
-  m_Name: sidewalk
+  m_Name: separation line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 1364657070467057133}
   - component: {fileID: 6210434034532891330}
   m_Layer: 0
-  m_Name: sidewalk
+  m_Name: separation line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 4037137439783945029}
   - component: {fileID: 3757585085983246701}
   m_Layer: 0
-  m_Name: sidewalk
+  m_Name: separation line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 4608701883970845085}
   - component: {fileID: 4218915591878331912}
   m_Layer: 0
-  m_Name: sidewalk
+  m_Name: separation line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

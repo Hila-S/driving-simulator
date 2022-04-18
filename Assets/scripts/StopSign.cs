@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class StopSign : MonoBehaviour
+public class StopSign : WarningDisplayer
 {
     private bool stopped = false;
     public Rigidbody target; // car
     private float speed = 0.0f;
     private int counterError = 0;
 
+    private String warningText = "You did not stop at the stop sign";
+
     private void Update()
     {
-        speed = target.velocity.magnitude * 3.6f * 3.5f;
+        speed = target.velocity.magnitude * 3.6f;
     }
 
     void OnTriggerStay(Collider col)
@@ -30,7 +33,7 @@ public class StopSign : MonoBehaviour
         {
             if (!stopped)
             {
-                Debug.Log("didnt stop");
+                displayWarning(warningText);
                 counterError++;
             }
             stopped = false;

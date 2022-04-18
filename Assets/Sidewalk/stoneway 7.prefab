@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 9078273688953025587}
   - component: {fileID: 7949379067868012382}
   m_Layer: 0
-  m_Name: sidewalk
+  m_Name: separation line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
