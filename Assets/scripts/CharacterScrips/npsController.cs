@@ -45,6 +45,7 @@ public class npsController : MonoBehaviour
         }
         agent.SetDestination(PathPoints[index].position);
         animator.SetFloat("vertical", !agent.isStopped ? 1 : 0);
+	
     }
 
 }
