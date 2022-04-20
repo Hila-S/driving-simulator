@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class CheckDirections : MonoBehaviour
+public class CheckDirections : WarningDisplayer
 {
     Arrows arrows;
     [SerializeField] GameObject Free_Racing_Car_Blue;
@@ -15,6 +15,7 @@ public class CheckDirections : MonoBehaviour
     private const string BACK = "back";
     private const string FRONT = "front";
     private int counterErrorDirction = 0;
+    private String warningText = "Error in the direction!";
 
     void Awake()
     {
@@ -39,7 +40,6 @@ public class CheckDirections : MonoBehaviour
                 if (delta.x < 0)
                 {
                     enter = RIGHT;
-                    Debug.Log("Right");
                     //warningCanvas.SetActive(true);
                 }
 
@@ -47,7 +47,6 @@ public class CheckDirections : MonoBehaviour
                 else
                 {
                     enter = LEFT;
-                    Debug.Log("Left");
                 }
 
             }
@@ -57,12 +56,10 @@ public class CheckDirections : MonoBehaviour
                 if (delta.z > 0)
                 {
                     enter = BACK;
-                    Debug.Log("Back");
                 }
                 else
                 {
                     enter = FRONT;
-                    Debug.Log("Front");
                 }
 
             }
@@ -94,7 +91,6 @@ public class CheckDirections : MonoBehaviour
                 if (delta.x < 0)
                 {
                     exit = RIGHT;
-                    Debug.Log("Right");
                     //warningCanvas.SetActive(true);
                 }
 
@@ -102,7 +98,6 @@ public class CheckDirections : MonoBehaviour
                 else
                 {
                     exit = LEFT;
-                    Debug.Log("Left");
                 }
 
             }
@@ -112,12 +107,10 @@ public class CheckDirections : MonoBehaviour
                 if (delta.z > 0)
                 {
                     exit = BACK;
-                    Debug.Log("Back");
                 }
                 else
                 {
                     exit = FRONT;
-                    Debug.Log("Front");
                 }
 
             }
@@ -147,6 +140,7 @@ public class CheckDirections : MonoBehaviour
             {
                 counterErrorDirction++;
                 Debug.Log("error in the direction!");
+                displayWarning(warningText);
             }
                 
         }
@@ -161,6 +155,7 @@ public class CheckDirections : MonoBehaviour
             {
                 counterErrorDirction++;
                 Debug.Log("error in the direction!");
+                displayWarning(warningText);
             }
         }
         if (direction == "right")
@@ -173,6 +168,7 @@ public class CheckDirections : MonoBehaviour
             {
                 counterErrorDirction++;
                 Debug.Log("error in the direction!");
+                displayWarning(warningText);
             }
         }
     }
