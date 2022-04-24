@@ -14,8 +14,9 @@ public class CheckDirections : WarningDisplayer
     private const string RIGHT = "right";
     private const string BACK = "back";
     private const string FRONT = "front";
+    String direction;
     private int counterErrorDirction = 0;
-    private String warningText = "Error in the direction!";
+    private String warningText = "Failed to listen to directions!";
 
     void Awake()
     {
@@ -71,6 +72,7 @@ public class CheckDirections : WarningDisplayer
                  else
                      Debug.Log("bottom");
              }*/
+            direction = arrows.GetDirection();
         }
 
     }
@@ -128,46 +130,29 @@ public class CheckDirections : WarningDisplayer
     }
     public void checkDir()
     {
-        
-        String direction = arrows.GetDirection();
         if (direction == "straight")
         {
-            if ((enter == FRONT && exit == BACK) || (enter == BACK && exit == FRONT))
-                Debug.Log("bravo!");
-            else if ((enter == RIGHT && exit == LEFT) || (enter == LEFT && exit == RIGHT))
-                Debug.Log("bravo!");
-            else
+            if (!((enter == FRONT && exit == BACK) || (enter == BACK && exit == FRONT)) && !((enter == RIGHT && exit == LEFT) || (enter == LEFT && exit == RIGHT)))
             {
                 counterErrorDirction++;
-                Debug.Log("error in the direction!");
                 displayWarning(warningText);
             }
                 
         }
         if (direction == "left")
         {
-            if ((enter == BACK && exit == LEFT) || (enter == LEFT && exit == FRONT)
-                || (enter == FRONT && exit == RIGHT) || (enter == RIGHT && exit == BACK))
-            {
-                Debug.Log("bravo!");
-            }
-            else
+            if (!((enter == BACK && exit == LEFT) || (enter == LEFT && exit == FRONT)
+                || (enter == FRONT && exit == RIGHT) || (enter == RIGHT && exit == BACK)))
             {
                 counterErrorDirction++;
-                Debug.Log("error in the direction!");
                 displayWarning(warningText);
             }
         }
         if (direction == "right")
         {
-            if ((enter == BACK && exit == RIGHT) || (enter == RIGHT && exit == FRONT) || (enter == FRONT && exit == LEFT) || (enter == LEFT && exit == BACK))
-            {
-                Debug.Log("bravo!");
-            }
-            else
+            if (!((enter == BACK && exit == RIGHT) || (enter == RIGHT && exit == FRONT) || (enter == FRONT && exit == LEFT) || (enter == LEFT && exit == BACK)))
             {
                 counterErrorDirction++;
-                Debug.Log("error in the direction!");
                 displayWarning(warningText);
             }
         }

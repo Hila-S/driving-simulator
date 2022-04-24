@@ -6,7 +6,7 @@ using System;
 
 public class CheckRightLane : WarningDisplayer
 {
-    private String warningText = "You arn't in the right lane!";
+    private String warningText = "You aren't in the right lane!";
     //private String enter;
     public void OnTriggerEnter(Collider col)
     {
@@ -21,18 +21,9 @@ public class CheckRightLane : WarningDisplayer
             float zAbs = Mathf.Abs(delta.z);
             if (xAbs > yAbs && xAbs > zAbs)
             {
-                // side is hit
-                if (delta.x < 0)
-                {
-                    //enter = RIGHT;
-                    // Debug.Log("RIGHTlane");
-                    //warningCanvas.SetActive(true);
-                }
-                else
+                if (delta.x >= 0)
                 {
                     //enter = LEFT;
-                    Debug.Log("Leftlane");
-                    Debug.Log("You arn't in the right lane!");
                     displayWarning(warningText);
                 }
 
@@ -53,8 +44,6 @@ public class CheckRightLane : WarningDisplayer
                 if (delta.x < 0)
                 {
                     //enter = RIGHT;
-                    Debug.Log("RIGHTlane");
-                    Debug.Log("You arn't in the right lane!");
                     displayWarning(warningText);
                     //warningCanvas.SetActive(true);
                 }
@@ -73,17 +62,9 @@ public class CheckRightLane : WarningDisplayer
 
             if (zAbs > yAbs)
             {
-                // front/back is hit
-                if (delta.z > 0)
-                {
-                    //enter = BACK;
-                    Debug.Log("Backlane");
-                }
-                else
+                if (delta.z <= 0)
                 {
                     //enter = FRONT;
-                    Debug.Log("Frontlane");
-                    Debug.Log("You arn't in the right lane!");
                     displayWarning(warningText);
                 }
 
@@ -105,14 +86,7 @@ public class CheckRightLane : WarningDisplayer
                 if (delta.z > 0)
                 {
                     //enter = BACK;
-                    Debug.Log("Backlane");
-                    Debug.Log("You arn't in the right lane!");
                     displayWarning(warningText);
-                }
-                else
-                {
-                    //enter = FRONT;
-                    Debug.Log("Frontlane");
                 }
 
             }
