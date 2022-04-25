@@ -45,7 +45,7 @@ public class ErrorCounting : MonoBehaviour
         counterCollisions = carCollision.GetNumHumanCollisions();
         counterErrorRedLight = redLight.GetNumErrorRedLight();
         counterErrorSpeed = checkSpeed.GetNumErrorSpeed();
-        counterErrorWrongLane = wrongLane.GetNumErrorWrongLane();
+        // counterErrorWrongLane = wrongLane.GetNumErrorWrongLane();
         counterErrorSeparationLine = separationLine.GetNumErrorSeparationLine();
         counterErrorStopSign = stopSign.GetNumErrorStopSign();
 
