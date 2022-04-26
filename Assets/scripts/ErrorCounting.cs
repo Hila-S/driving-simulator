@@ -4,66 +4,109 @@ using UnityEngine;
 
 public class ErrorCounting : MonoBehaviour
 {
-    [SerializeField] GameObject Free_Racing_Car_Blue;
+    [SerializeField] GameObject Car;
     CheckDirections checkDirections;
+    NoEntrySign noEntry;
+    RightOfWaySign rightOfWay;
     HumanCollision humanCollision;
     CarCollision carCollision;
     RedLight redLight;
     CheckSpeed checkSpeed;
-    WrongLane wrongLane;
+    CheckRightLane checkRightLane;
+    CorrectLaneTurns correctLaneTurns;
     SeparationLine separationLine;
     StopSign stopSign;
 
-    private int counterErrorDirections = 0;
+    /*int counterErrorDirections = 0;
     int counterHumanCollisions = 0;
     int counterCollisions = 0;
     int counterErrorRedLight = 0;
     int counterErrorSpeed = 0;
     int counterErrorWrongLane = 0;
     int counterErrorSeparationLine = 0;
-    int counterErrorStopSign = 0;
+    int counterErrorStopSign = 0;*/
+    private int instructionErrors = 0;
+    private int signErrors = 0;
+    private int pedestrianErrors = 0;
+    private int lightErrors = 0;
+    private int speedErrors = 0;
+    private int collisionErrors = 0;
+    private int laneErrors = 0;
 
 
     void Awake()
     {
         DontDestroyOnLoad(this);
-        checkDirections = Free_Racing_Car_Blue.GetComponent<CheckDirections>();
-        humanCollision = Free_Racing_Car_Blue.GetComponent<HumanCollision>();
-        carCollision = Free_Racing_Car_Blue.GetComponent<CarCollision>();
-        redLight = Free_Racing_Car_Blue.GetComponent<RedLight>();
-        checkSpeed = Free_Racing_Car_Blue.GetComponent<CheckSpeed>();
-        wrongLane = Free_Racing_Car_Blue.GetComponent<WrongLane>();
-        separationLine = Free_Racing_Car_Blue.GetComponent<SeparationLine>();
-        stopSign = Free_Racing_Car_Blue.GetComponent<StopSign>();
+        checkDirections = Car.GetComponent<CheckDirections>();
+        humanCollision = Car.GetComponent<HumanCollision>();
+        carCollision = Car.GetComponent<CarCollision>();
+        redLight = Car.GetComponent<RedLight>();
+        checkSpeed = Car.GetComponent<CheckSpeed>();
+        separationLine = Car.GetComponent<SeparationLine>();
+        stopSign = Car.GetComponent<StopSign>();
+        noEntry = Car.GetComponent<NoEntrySign>();
+        rightOfWay = Car.GetComponent<RightOfWaySign>();
+        checkRightLane = Car.GetComponent<CheckRightLane>();
+        correctLaneTurns = Car.GetComponent<CorrectLaneTurns>();
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         counterErrorDirections = checkDirections.GetNumErrorDirction();
         counterHumanCollisions = humanCollision.GetNumHumanCollisions();
         counterCollisions = carCollision.GetNumHumanCollisions();
         counterErrorRedLight = redLight.GetNumErrorRedLight();
         counterErrorSpeed = checkSpeed.GetNumErrorSpeed();
-        // counterErrorWrongLane = wrongLane.GetNumErrorWrongLane();
         counterErrorSeparationLine = separationLine.GetNumErrorSeparationLine();
         counterErrorStopSign = stopSign.GetNumErrorStopSign();
-
-        /*
-        if(counterErrorDirections>=1)
-            Debug.Log("counterErrorDirections:" + counterErrorDirections);
-        if (counterErrorSpeed >= 1)
-        {
-            Debug.Log("counterErrorSpeed:" + counterErrorSpeed);
-        }
-        */
         if (counterErrorSeparationLine >= 1)
         {
             Debug.Log("counterErrorSeparationLine:" + counterErrorSeparationLine);
         }
+    }*/
+
+    public void Update()
+    {
+        instructionErrors = checkDirections.GetNumErrorDirction();
+        signErrors = noEntry.GetNumErrors() + rightOfWay.GetNumErrors() + stopSign.GetNumErrorStopSign();
+        pedestrianErrors = humanCollision.GetNumHumanCollisions();
+        lightErrors = redLight.GetNumErrorRedLight();
+        speedErrors = checkSpeed.GetNumErrorSpeed();
+        collisionErrors = carCollision.GetNumHumanCollisions();
+        laneErrors = checkRightLane.GetNumErrors() + correctLaneTurns.GetNumErrors() + separationLine.GetNumErrorSeparationLine();
     }
 
-    public int GetErrorDirections()
+    public int GetInstructionErrors()
+    {
+        return instructionErrors;
+    }
+    public int GetSignErrors()
+    {
+        return signErrors;
+    }
+    public int GetPedestrianErrors()
+    {
+        return pedestrianErrors;
+    }
+    public int GetLightErrors()
+    {
+        return lightErrors;
+    }
+    public int GetSpeedErrors()
+    {
+        return speedErrors;
+    }
+    public int GetCollisionErrors()
+    {
+        return collisionErrors;
+    }
+    public int GetLaneErrors()
+    {
+        return laneErrors;
+    }
+
+    /*public int GetErrorDirections()
     {
         return counterErrorDirections;
     }
@@ -84,6 +127,6 @@ public class ErrorCounting : MonoBehaviour
     {
         int num = counterErrorWrongLane + counterErrorSeparationLine + counterErrorRedLight;
         return num;
-    }
+    }*/
 
 }

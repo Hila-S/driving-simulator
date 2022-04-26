@@ -7,7 +7,7 @@ using System;
 public class scoreEndGame : MonoBehaviour
 {
     // private ErrorCounting errorCounting;
-    GameObject errorCountingScore;
+    /*GameObject errorCountingScore;
     ErrorCounting errorCounting;
     public Text text;
     public GameObject scoreCanvas;
@@ -30,6 +30,6 @@ public class scoreEndGame : MonoBehaviour
             text.text = newString;
             scoreCanvas.SetActive(true);
         }
-    }
+    }*/
 }
     

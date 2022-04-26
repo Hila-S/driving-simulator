@@ -10,7 +10,6 @@ public class RightOfWaySign : WarningDisplayer
     private float speed = 0.0f;
     private bool enter_front = false;
     private int counterError = 0;
-
     private String warningText = "You did not yield";
 
     private void Update()
@@ -59,7 +58,7 @@ public class RightOfWaySign : WarningDisplayer
         }
     }
 
-    public int GetNumErrorStopSign()
+    public int GetNumErrors()
     {
         return counterError;
     }

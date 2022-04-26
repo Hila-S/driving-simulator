@@ -7,6 +7,7 @@ using System;
 public class CheckRightLane : WarningDisplayer
 {
     private String warningText = "You aren't in the right lane!";
+    private int errorCounter = 0;
     //private String enter;
     public void OnTriggerEnter(Collider col)
     {
@@ -25,6 +26,7 @@ public class CheckRightLane : WarningDisplayer
                 {
                     //enter = LEFT;
                     displayWarning(warningText);
+                    errorCounter++;
                 }
 
             }
@@ -45,6 +47,7 @@ public class CheckRightLane : WarningDisplayer
                 {
                     //enter = RIGHT;
                     displayWarning(warningText);
+                    errorCounter++;
                     //warningCanvas.SetActive(true);
                 }
 
@@ -66,6 +69,7 @@ public class CheckRightLane : WarningDisplayer
                 {
                     //enter = FRONT;
                     displayWarning(warningText);
+                    errorCounter++;
                 }
 
             }
@@ -87,11 +91,16 @@ public class CheckRightLane : WarningDisplayer
                 {
                     //enter = BACK;
                     displayWarning(warningText);
+                    errorCounter++;
                 }
 
             }
 
         }
 
+    }
+    public int GetNumErrors()
+    {
+        return errorCounter;
     }
 }

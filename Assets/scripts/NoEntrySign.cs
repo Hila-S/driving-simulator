@@ -6,6 +6,7 @@ using System;
 public class NoEntrySign : WarningDisplayer
 {
     private String warningText = "Entrance is forbidden";
+    private int errorCounter = 0;
 
     public void OnTriggerEnter(Collider col)
     {
@@ -17,33 +18,21 @@ public class NoEntrySign : WarningDisplayer
             float xAbs = Mathf.Abs(delta.x);
             float yAbs = Mathf.Abs(delta.y);
             float zAbs = Mathf.Abs(delta.z);
-            /*if (xAbs > yAbs && xAbs > zAbs)
-            {
-                // side is hit
-                if (delta.x < 0)
-                {
-                    Debug.Log("Left");
-                }
-
-                else
-                    Debug.Log("Right");
-
-            }*/
             if (!(xAbs > yAbs && xAbs > zAbs) && zAbs > yAbs)
             {
                 // front
                 if (delta.z <= 0)
+                {
                     displayWarning(warningText);
+                    errorCounter++;
+                }
             }
-            /*else
-            {
-                // top/bottom is hit
-                if (delta.y > 0)
-                    Debug.Log("top");
-                else
-                    Debug.Log("bottom");
-            }*/
         }
 
+    }
+
+    public int GetNumErrors()
+    {
+        return errorCounter;
     }
 }

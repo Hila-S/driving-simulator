@@ -4,6 +4,7 @@ using System.Linq;
 
 public class CorrectLaneTurns: WarningDisplayer
 {
+    private int errorCounter = 0;
     private String warningText = "You have turned from the incorrect lane!";
     Arrows arrows;
     [SerializeField] GameObject Car;
@@ -49,19 +50,27 @@ public class CorrectLaneTurns: WarningDisplayer
                 if (direction == LEFT && (col.gameObject.name != "l turn cube" && col.gameObject.name != "ls turn cube"))
                 {
                     displayWarning(warningText);
+                    errorCounter++;
                 }
 
                 if (direction == RIGHT && (col.gameObject.name != "r turn cube" && col.gameObject.name != "rs turn cube"))
                 {
                     displayWarning(warningText);
+                    errorCounter++;
                 }
 
                 if (direction == STRAIGHT && (col.gameObject.name != "rs turn cube" && col.gameObject.name != "ls turn cube" && col.gameObject.name != "s turn cube"))
                 {
                     displayWarning(warningText);
+                    errorCounter++;
                 }
             }
                
         }
+    }
+
+    public int GetNumErrors()
+    {
+        return errorCounter;
     }
 }
