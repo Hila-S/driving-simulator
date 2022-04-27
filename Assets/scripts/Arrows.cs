@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Random;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Arrows : MonoBehaviour
 {
@@ -18,6 +17,8 @@ public class Arrows : MonoBehaviour
     private const string LEFT = "left";
     private const string RIGHT = "right";
     private const string STRAIGHT = "straight";
+
+    private int commandCounter = 0;
 
     void Start()
     {
@@ -45,6 +46,7 @@ public class Arrows : MonoBehaviour
                 direction = RIGHT;
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
+            commandCounter++;
         }
         if (col.gameObject.name == "directions-rl" || col.gameObject.name == "directions-rl-70" || col.gameObject.name == "directions-rl-30")
         {
@@ -59,6 +61,7 @@ public class Arrows : MonoBehaviour
                 direction = RIGHT;
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
+            commandCounter++;
         }
         if (col.gameObject.name == "directions-rs" || col.gameObject.name == "directions-rs-70" || col.gameObject.name == "directions-rs-30")
         {
@@ -73,6 +76,7 @@ public class Arrows : MonoBehaviour
                 direction = RIGHT;
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
+            commandCounter++;
         }
         if (col.gameObject.name == "directions-ls" || col.gameObject.name == "directions-ls-70" || col.gameObject.name == "directions-ls-30")
         {
@@ -87,23 +91,30 @@ public class Arrows : MonoBehaviour
                 direction = LEFT;
                 direction_img.GetComponent<Image>().sprite = left_arrow;
             }
+            commandCounter++;
         }
         if (col.gameObject.name == "directions-l" || col.gameObject.name == "directions-l-70" || col.gameObject.name == "directions-l-30")
         {
-                direction = LEFT;
-                direction_img.GetComponent<Image>().sprite = left_arrow;
+            direction = LEFT;
+            direction_img.GetComponent<Image>().sprite = left_arrow;
+            commandCounter++;
         }
         if (col.gameObject.name == "directions-r" || col.gameObject.name == "directions-r-70" || col.gameObject.name == "directions-r-30")
         {
             direction = RIGHT;
             direction_img.GetComponent<Image>().sprite = right_arrow;
+            commandCounter++;
         }
         if (col.gameObject.name == "directions-s" || col.gameObject.name == "directions-s-70" || col.gameObject.name == "directions-s-30")
         {
             direction = STRAIGHT;
             direction_img.GetComponent<Image>().sprite = up_arrow;
+            commandCounter++;
         }
-
+        if (commandCounter > 10)
+        {
+            SceneManager.LoadScene("EndGame");
+        }
     }
     public String GetDirection()
     {

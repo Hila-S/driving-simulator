@@ -35,9 +35,9 @@ public class RightOfWaySign : WarningDisplayer
 
     void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.name == "yield sign" && enter_front)
+        if ((col.gameObject.name == "yield sign" || col.gameObject.name == "slow-roundabout") && enter_front)
         {
-            if (speed < 20)
+            if (speed < 10)
             {
                 slow = true;
             }
@@ -46,7 +46,7 @@ public class RightOfWaySign : WarningDisplayer
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "yield sign" && enter_front)
+        if ((col.gameObject.name == "yield sign" || col.gameObject.name == "slow-roundabout") && enter_front)
         {
             if (!slow)
             {
