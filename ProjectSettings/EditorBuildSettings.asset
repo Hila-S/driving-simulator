@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7d8918a774c8ed146b684bab8dc2863b
+  - enabled: 1
+    path: Assets/Scenes/Progress.unity
+    guid: 6b0a0531e1b30824191f4478c3ebd773
+  - enabled: 1
+    path: Assets/Scenes/DrivingSimulator.unity
+    guid: cf94b417e7e36c942b5c1f4434bff57b
   m_configObjects: {}

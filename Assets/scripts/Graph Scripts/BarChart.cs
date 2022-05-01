@@ -7,21 +7,25 @@ using System.Linq;
 public class BarChart : MonoBehaviour
 {
     public Bar barPrefab;
-    public int[] inputValues;
-    public string[] labels;
     public Color[] colors;
+    string[] labels;
     List<Bar> bars = new List<Bar>();
     float chartHeight;
 
     // Start is called before the first frame update
     void Start()
     {
+        labels = new string[]{ "", "", "", "", "", ""};
         chartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
-        DisplayGraph(inputValues);
     }
 
-    void DisplayGraph(int[] vals)
+    public void DisplayGraph(int[] vals)
     {
+        if (vals.Length > 1)
+        {
+            labels[0] = "Least Recent";
+            labels[vals.Length - 1] = "Most Recent";
+        }
         int maxValue = vals.Max();
         for (int i = 0; i < vals.Length; i++)
         {
@@ -41,6 +45,14 @@ public class BarChart : MonoBehaviour
             }
         }
         
+    }
+
+    public void Clear()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
 }
