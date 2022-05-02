@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DrivingSimulator.unity
     guid: cf94b417e7e36c942b5c1f4434bff57b
+  - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: b16dd42f659765d489cbe84d39b973ab
   m_configObjects: {}
