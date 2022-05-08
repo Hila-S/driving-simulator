@@ -29,12 +29,20 @@ public class StopSign : WarningDisplayer
     }
     void OnTriggerExit(Collider col)
     {
+        // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
+        Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
+        float xAbs = Mathf.Abs(delta.x);
+        float yAbs = Mathf.Abs(delta.y);
+        float zAbs = Mathf.Abs(delta.z);
         if (col.gameObject.name == "StopSignLine")
         {
-            if (!stopped)
+            if (!(xAbs > yAbs && xAbs > zAbs) && zAbs > yAbs)
             {
-                displayWarning(warningText);
-                counterError++;
+                if (delta.z > 0 && !stopped)
+                {
+                    displayWarning(warningText);
+                    counterError++;
+                }
             }
             stopped = false;
         }

@@ -15,7 +15,7 @@ public class CountDown : MonoBehaviour
 
     IEnumerator CountdownToStart()
     {
-        while(countdownTime > 0)
+        while (countdownTime > 0)
         {
             countdownDisplay.text = countdownTime.ToString();
             yield return new WaitForSeconds(1f);

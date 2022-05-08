@@ -25,7 +25,7 @@ public class npsController : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         roam();
     }
