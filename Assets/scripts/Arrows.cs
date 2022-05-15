@@ -10,7 +10,7 @@ public class Arrows : MonoBehaviour
     public Sprite up_arrow;
     public Sprite right_arrow;
     public Sprite left_arrow;
-    
+
     private int rInt;
     private String direction;
 
@@ -20,9 +20,13 @@ public class Arrows : MonoBehaviour
 
     private int commandCounter = 0;
 
+    [SerializeField] GameObject audioSource;
+    AudioPlayerDirections audioPlayer;
+
     void Start()
     {
         direction_img.enabled = false;
+        audioPlayer = audioSource.GetComponent<AudioPlayerDirections>();
     }
 
     void OnTriggerEnter(Collider col)
@@ -47,6 +51,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
             commandCounter++;
+            audioPlayer.playSound(direction);
         }
         if (col.gameObject.name == "directions-rl" || col.gameObject.name == "directions-rl-70" || col.gameObject.name == "directions-rl-30")
         {
@@ -62,6 +67,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
             commandCounter++;
+            audioPlayer.playSound(direction);
         }
         if (col.gameObject.name == "directions-rs" || col.gameObject.name == "directions-rs-70" || col.gameObject.name == "directions-rs-30")
         {
@@ -77,6 +83,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = right_arrow;
             }
             commandCounter++;
+            audioPlayer.playSound(direction);
         }
         if (col.gameObject.name == "directions-ls" || col.gameObject.name == "directions-ls-70" || col.gameObject.name == "directions-ls-30")
         {
@@ -92,6 +99,7 @@ public class Arrows : MonoBehaviour
                 direction_img.GetComponent<Image>().sprite = left_arrow;
             }
             commandCounter++;
+            audioPlayer.playSound(direction);
         }
         if (col.gameObject.name == "directions-l" || col.gameObject.name == "directions-l-70" || col.gameObject.name == "directions-l-30")
         {
@@ -104,6 +112,7 @@ public class Arrows : MonoBehaviour
             direction = RIGHT;
             direction_img.GetComponent<Image>().sprite = right_arrow;
             commandCounter++;
+            audioPlayer.playSound(direction);
         }
         if (col.gameObject.name == "directions-s" || col.gameObject.name == "directions-s-70" || col.gameObject.name == "directions-s-30")
         {

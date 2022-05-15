@@ -64,14 +64,7 @@ public class CheckDirections : WarningDisplayer
                 }
 
             }
-            /* else
-             {
-                 // top/bottom is hit
-                 if (delta.y > 0)
-                     Debug.Log("top");
-                 else
-                     Debug.Log("bottom");
-             }*/
+            
             direction = arrows.GetDirection();
         }
 
