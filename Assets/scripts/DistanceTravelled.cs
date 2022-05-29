@@ -8,16 +8,32 @@ public class DistanceTravelled : MonoBehaviour
     float distanceTravelled = 0;
     Vector3 lastPosition;
 
+    private string toggle;
+    private string distanceString = "";
+
     void Start()
     {
         lastPosition = transform.position;
+
+        toggle = "time"; // firebase
+        if (toggle == "distance")
+        {
+            distanceString = "1"; // firbase
+        }
     }
 
     void Update()
     {
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
         lastPosition = transform.position;
-        if (distanceTravelled > 300)
-            SceneManager.LoadScene("EndGame");
+
+        if (toggle == "distance")
+        {
+            float distance = float.Parse(distanceString);
+            if (distanceTravelled > distance * 1000)
+            {
+                SceneManager.LoadScene("EndGame");
+            }
+        }
     }
 }

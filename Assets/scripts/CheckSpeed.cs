@@ -9,19 +9,26 @@ public class CheckSpeed : WarningDisplayer
     private float speed = 0.0f;
     private int counterErrorSpeed = 0;
     bool aboveSpeed = false;
+    int speedLimit = 0;
 
     private String warningText = "You have gone above the speed limit";
+    void Start()
+    {
+        string speedString = "50"; // firebase
+        Int32.TryParse(speedString, out speedLimit);
+    }
 
     // Update is called once per frame
     void Update()
     {
         speed = target.velocity.magnitude * 3.6f;
     }
+
     void OnTriggerStay(Collider col)
     {
         if ((col.gameObject.name == "directions-rls" || col.gameObject.name == "directions-rl" || col.gameObject.name == "directions-rs" 
             || col.gameObject.name == "directions-ls" || col.gameObject.name == "directions-r" || col.gameObject.name == "directions-l"
-            || col.gameObject.name == "directions-s") && speed > 50 && aboveSpeed == false )
+            || col.gameObject.name == "directions-s") && speed > speedLimit && aboveSpeed == false )
         {
             aboveSpeed = true;
             displayWarning(warningText);

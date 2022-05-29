@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Instructions.unity
     guid: b16dd42f659765d489cbe84d39b973ab
+  - enabled: 1
+    path: Assets/Scenes/NightSimulator.unity
+    guid: 70a5385d351851540bbb2a44d8b46f3a
+  - enabled: 1
+    path: Assets/Scenes/AdminMenu.unity
+    guid: 645bedbe3dc4a3949a0d8225cba15fec
+  - enabled: 1
+    path: Assets/Scenes/Ranking.unity
+    guid: 3db2426db85585a44b367001a470b0de
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ErrorsTable : MonoBehaviour
 {
@@ -56,6 +57,16 @@ public class ErrorsTable : MonoBehaviour
         foreach(ErrorEntry errorEntry in errorEntryList)
         {
             CreateErrorEntryTransform(errorEntry, entryContainer, errorEntryTransformList);
+        }
+
+        int scoreGame = Math.Max(0, 100 - instructionErrors - 2 * signErrors - 5 * pedestrianErrors 
+            - 4 * lightErrors - 2 * speedErrors - 2 * collisionErrors - 3 * laneErrors);
+        string highscoreString = "80"; // firebase
+        int highscore = 0;
+        Int32.TryParse(highscoreString, out highscore);
+        if (scoreGame > highscore)
+        {
+            // firebase
         }
 
     }

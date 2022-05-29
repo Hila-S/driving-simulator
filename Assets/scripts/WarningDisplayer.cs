@@ -19,7 +19,7 @@ public class WarningDisplayer : MonoBehaviour
     void Start()
     {
         warningCanvas.SetActive(false);
-        audioSource = GameObject.Find("AudioSource").GetComponent<AudioSource>();
+        audioSource = GameObject.Find("AudioSourceWarning").GetComponent<AudioSource>();
         if (audioSource == null)
             Debug.Log("audio source is null!");
     }
@@ -41,8 +41,8 @@ public class WarningDisplayer : MonoBehaviour
         warningCanvas.SetActive(true);
         if (audioSource == null)
         {
-            audioSource = GetComponent<AudioSource>();
+            audioSource = GameObject.Find("AudioSourceWarning").GetComponent<AudioSource>();
         }
-        audioSource.Play();
+       audioSource.Play();
     }
 }

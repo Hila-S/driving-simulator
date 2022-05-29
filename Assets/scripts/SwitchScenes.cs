@@ -15,7 +15,14 @@ public class SwitchScenes : MonoBehaviour
         string[] namesOfScenes = scenesNames.Split(' '); 
         if (namesOfScenes.Length == 1)
         {
-            SceneManager.LoadScene(namesOfScenes[0]);
+            if (namesOfScenes[0] == "MainMenu")
+            {
+                bool admin = false; // firebase
+                if (admin) { SceneManager.LoadScene("AdminMenu"); }
+                else { SceneManager.LoadScene(namesOfScenes[0]); }
+            } else
+            { SceneManager.LoadScene(namesOfScenes[0]); }
+            
         } else
         {
             string firstScene = namesOfScenes[0];

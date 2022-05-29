@@ -23,13 +23,23 @@ public class CarController : MonoBehaviour
     public float motorForce = 50f;
     public float brakeForce = 0f;
 
+    private GameManagerScript GMS;
+
+    void Start()
+    {
+        GMS = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+    }
+
 
     private void FixedUpdate()
     {
-        GetInput();
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
+        if (GMS.counterDownDone)
+        {
+            GetInput();
+            HandleMotor();
+            HandleSteering();
+            UpdateWheels();
+        }
     }
 
     private void GetInput()

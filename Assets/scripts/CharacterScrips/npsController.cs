@@ -14,6 +14,8 @@ public class npsController : MonoBehaviour
     public int index = 0;
     public float minDistance = 10;
 
+    private GameManagerScript GMS;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -23,11 +25,13 @@ public class npsController : MonoBehaviour
         {
             PathPoints[i] = Path.transform.GetChild(i);
         }
+        GMS = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
 
     void FixedUpdate()
     {
-        roam();
+        if (GMS.counterDownDone)
+            roam();
     }
 
     void roam()
