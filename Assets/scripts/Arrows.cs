@@ -27,6 +27,7 @@ public class Arrows : MonoBehaviour
     AudioPlayerDirections audioPlayer;
 
     private GameManagerScript GMS;
+    private bool isFirst;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class Arrows : MonoBehaviour
         }
 
         GMS = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        isFirst = true;
     }
 
     void OnTriggerEnter(Collider col)
@@ -145,6 +147,64 @@ public class Arrows : MonoBehaviour
                     SceneManager.LoadScene("EndGame");
                 }
             }
+        }
+
+        if (col.gameObject.name == "rls-first" && isFirst)
+        {
+            rInt = Range(0, 3); //for ints
+            if (rInt == 0)
+            {
+                direction = STRAIGHT;
+                direction_img.GetComponent<Image>().sprite = up_arrow;
+            }
+            if (rInt == 1)
+            {
+                direction = LEFT;
+                direction_img.GetComponent<Image>().sprite = left_arrow;
+            }
+            if (rInt == 2)
+            {
+                direction = RIGHT;
+                direction_img.GetComponent<Image>().sprite = right_arrow;
+            }
+            commandCounter++;
+            audioPlayer.playSound(direction);
+
+            isFirst = false;
+        }
+        if (col.gameObject.name == "rs-first" && isFirst)
+        {
+            rInt = Range(1, 3); //for ints
+            if (rInt == 1)
+            {
+                direction = STRAIGHT;
+                direction_img.GetComponent<Image>().sprite = up_arrow;
+            }
+            if (rInt == 2)
+            {
+                direction = RIGHT;
+                direction_img.GetComponent<Image>().sprite = right_arrow;
+            }
+            commandCounter++;
+            audioPlayer.playSound(direction);
+            isFirst = false;
+        }
+        if (col.gameObject.name == "rl-first" && isFirst)
+        {
+            rInt = Range(1, 3); //for ints
+            if (rInt == 1)
+            {
+                direction = LEFT;
+                direction_img.GetComponent<Image>().sprite = left_arrow;
+            }
+            if (rInt == 2)
+            {
+                direction = RIGHT;
+                direction_img.GetComponent<Image>().sprite = right_arrow;
+            }
+            commandCounter++;
+            audioPlayer.playSound(direction);
+            isFirst = false;
         }
 
     }
