@@ -12,6 +12,7 @@ using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
 {
@@ -35,9 +36,11 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
+    string user;
 
     void Awake()
     {
+        DontDestroyOnLoad(this);
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
@@ -114,9 +117,11 @@ public class AuthManager : MonoBehaviour
             //User is now logged in
             //Now get the result
             User = LoginTask.Result;
-            Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
+            Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);///////////////////////////////////////////
+            user = User.DisplayName;
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
+            SceneManager.LoadScene("MainMenu");
             // need to move to the simoulater
         }
     }
@@ -200,5 +205,11 @@ public class AuthManager : MonoBehaviour
             }
         }
     }
+
+    public string getUserName()
+    {
+        return user;
+    }
 }
+
 */
