@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "456348557798",
+    "firebase_url": "https://driving-simulator-new-default-rtdb.firebaseio.com",
     "project_id": "driving-simulator-new",
     "storage_bucket": "driving-simulator-new.appspot.com"
   },

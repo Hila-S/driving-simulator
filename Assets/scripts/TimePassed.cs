@@ -12,10 +12,15 @@ public class TimePassed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        toggle = "time"; // firebase
-        if (toggle == "time")
+        GameObject adminFirebaseObj;
+        AdminFirebase adminFirebase;
+        adminFirebaseObj = GameObject.Find("AdminFirebase");
+        if (adminFirebaseObj != null)
         {
-            timeString = "1"; // firbase
+            adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
+            toggle = adminFirebase.GetState(); // firebase - state
+            if (toggle == "time")
+                timeString = adminFirebase.GetNum("time"); // firbase - the time
         }
     }
 
@@ -23,7 +28,6 @@ public class TimePassed : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
         if (toggle == "time")
         {
             float time = float.Parse(timeString);

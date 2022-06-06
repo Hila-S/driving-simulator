@@ -19,7 +19,7 @@ public class Arrows : MonoBehaviour
     private const string STRAIGHT = "straight";
 
     private string toggle;
-    private string numOfCommands = "";
+    private string numOfCommands = "4";
 
     private int commandCounter = 0;
 
@@ -31,6 +31,7 @@ public class Arrows : MonoBehaviour
 
     void Start()
     {
+        /*
         direction_img.enabled = false;
         audioPlayer = audioSource.GetComponent<AudioPlayerDirections>();
 
@@ -40,6 +41,23 @@ public class Arrows : MonoBehaviour
             numOfCommands = "3"; // firbase
         }
 
+        GMS = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        isFirst = true;
+        */
+
+        direction_img.enabled = false;
+        audioPlayer = audioSource.GetComponent<AudioPlayerDirections>();
+
+        GameObject adminFirebaseObj;
+        AdminFirebase adminFirebase;
+        adminFirebaseObj = GameObject.Find("AdminFirebase");
+        if (adminFirebaseObj != null)
+        {
+            adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
+            toggle = adminFirebase.GetState(); // firebase - state
+            if (toggle == "commands")
+                numOfCommands = adminFirebase.GetNum("commands"); // firbase - the num of the commands
+        }
         GMS = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         isFirst = true;
     }

@@ -31,6 +31,15 @@ public class AdminSettingsBtn : MonoBehaviour
         string toggle = getAdminData.get_toggle();
         string end_input = getAdminData.get_end_input();
         string speed_input = getAdminData.get_speed_input();
-        // add to firbase
+        // send to firebase
+        GameObject adminFirebaseObj;
+        AdminFirebase adminFirebase;
+        adminFirebaseObj = GameObject.Find("AdminFirebase");
+        adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
+        adminFirebase.updatestate(toggle);//update the state
+        if (end_input != "")
+            adminFirebase.updateFirebaseAdmin(toggle, int.Parse(end_input));//update the end_input
+        if (speed_input != "")
+            adminFirebase.updateFirebaseAdmin("speed", int.Parse(speed_input));//update the speed
     }
 }

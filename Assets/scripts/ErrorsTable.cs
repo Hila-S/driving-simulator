@@ -36,6 +36,25 @@ public class ErrorsTable : MonoBehaviour
             speedErrors = errorCounting.GetSpeedErrors();
             collisionErrors = errorCounting.GetCollisionErrors();
             laneErrors = errorCounting.GetLaneErrors();
+            int scoreGame = Math.Max(0, 100 - instructionErrors - 2 * signErrors - 5 * pedestrianErrors
+            - 4 * lightErrors - 2 * speedErrors - 2 * collisionErrors - 3 * laneErrors);
+
+            //add this to firebase
+            GameObject AddScoreFirebase;
+            scoreEndGame scoreEndGameScript;
+            AddScoreFirebase = GameObject.Find("AddScoreFirebase");
+            if (AddScoreFirebase != null)
+            {
+                scoreEndGameScript = AddScoreFirebase.GetComponent<scoreEndGame>();
+                scoreEndGameScript.addGameFirebase(instructionErrors, signErrors, pedestrianErrors, lightErrors, speedErrors, collisionErrors, laneErrors, scoreGame);
+            }
+            else
+            {
+                Debug.Log("error in  load scoreEndGameScript");
+            }
+            //
+            
+
         }   
         entryContainer = transform.Find("ErrorsEntryContainer");
         entryTemplate = entryContainer.Find("ErrorsEntryTemplate");
@@ -59,15 +78,8 @@ public class ErrorsTable : MonoBehaviour
             CreateErrorEntryTransform(errorEntry, entryContainer, errorEntryTransformList);
         }
 
-        int scoreGame = Math.Max(0, 100 - instructionErrors - 2 * signErrors - 5 * pedestrianErrors 
-            - 4 * lightErrors - 2 * speedErrors - 2 * collisionErrors - 3 * laneErrors);
-        string highscoreString = "80"; // firebase
-        int highscore = 0;
-        Int32.TryParse(highscoreString, out highscore);
-        if (scoreGame > highscore)
-        {
-            // firebase
-        }
+        
+
 
     }
 

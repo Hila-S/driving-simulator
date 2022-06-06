@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using UnityEngine;
 
 public class AuthManager : MonoBehaviour
 {
 
 }
-
-/*
+*/
 using System.Collections;
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
+//using System.Text;
 
 public class AuthManager : MonoBehaviour
 {
@@ -36,7 +38,7 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
-    string user;
+    private string user ="";
 
     void Awake()
     {
@@ -57,9 +59,11 @@ public class AuthManager : MonoBehaviour
         });
     }
 
+    
+
     private void InitializeFirebase()
     {
-        Debug.Log("Setting up Firebase Auth");
+       // Debug.Log("Setting up Firebase Auth");
         //Set the authentication instance object
         auth = FirebaseAuth.DefaultInstance;
     }
@@ -117,11 +121,16 @@ public class AuthManager : MonoBehaviour
             //User is now logged in
             //Now get the result
             User = LoginTask.Result;
-            Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);///////////////////////////////////////////
-            user = User.DisplayName;
+           // Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
+            this.user = User.DisplayName;
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
-            SceneManager.LoadScene("MainMenu");
+            if (String.Compare("admin", user) == 0)
+                SceneManager.LoadScene("AdminMenu");
+            else
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
             // need to move to the simoulater
         }
     }
@@ -211,5 +220,3 @@ public class AuthManager : MonoBehaviour
         return user;
     }
 }
-
-*/

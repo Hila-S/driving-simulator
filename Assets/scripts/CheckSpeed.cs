@@ -14,7 +14,15 @@ public class CheckSpeed : WarningDisplayer
     private String warningText = "You have gone above the speed limit";
     void Start()
     {
-        string speedString = "50"; // firebase
+        string speedString = "";
+        GameObject adminFirebaseObj;
+        AdminFirebase adminFirebase;
+        adminFirebaseObj = GameObject.Find("AdminFirebase");
+        if (adminFirebaseObj != null)
+        {
+            adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
+            speedString = adminFirebase.GetSpeed(); // firebase - get the speed
+        }
         Int32.TryParse(speedString, out speedLimit);
     }
 

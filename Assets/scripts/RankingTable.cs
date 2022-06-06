@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,20 @@ public class RankingTable : MonoBehaviour
     private List<Entry> highscoreEntryList;
     private List<Transform> highscoreEntryTransformList;
     private Text myScoreText;
+    private Dictionary<string, int> dictionaryRanking;
 
     void Awake()
     {
-        int myScore = 85;
+        int myScore = 60;
+        GameObject progress;
+        GeneralProgress generalProgress;
+        progress = GameObject.Find("Progress");
+        if (progress != null)
+        {
+            generalProgress = progress.GetComponent<GeneralProgress>();
+            dictionaryRanking = generalProgress.getGradeDictionary();
+            myScore = generalProgress.getGradeUser();
+        }
         myScoreText = GameObject.Find("myScore").GetComponent<Text>();
         myScoreText.text = "My Score: " + myScore.ToString();
 
@@ -22,20 +33,13 @@ public class RankingTable : MonoBehaviour
 
         entryTemplate.gameObject.SetActive(false);
 
-        highscoreEntryList = new List<Entry>()
+        //create the highscoreEntryList from firebase
+        highscoreEntryList = new List<Entry>();
+        foreach (KeyValuePair<string, int> kvp in dictionaryRanking)
         {
-            new Entry{userName = "a", score = 100},
-            new Entry{userName = "b", score = 90},
-            new Entry{userName = "c", score = 80},
-            new Entry{userName = "d", score = 70},
-            new Entry{userName = "e", score = 60},
-            new Entry{userName = "f", score = 50},
-            new Entry{userName = "g", score = 40},
-            new Entry{userName = "h", score = 30},
-            new Entry{userName = "i", score = 50},
-            new Entry{userName = "j", score = 100},
-        };
-
+            highscoreEntryList.Add(new Entry { userName = kvp.Key, score = kvp.Value });
+        }
+        //sorting
         for (int i = 0; i < highscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscoreEntryList.Count; j++)
@@ -48,14 +52,22 @@ public class RankingTable : MonoBehaviour
                 }
             }
         }
-
+        //top ten 
+        List<Entry> topTen = new List<Entry>();
+        int numIterations = Math.Min(10, highscoreEntryList.Count);
+        for (int i=0; i< numIterations; i++)
+        {
+            topTen.Add(new Entry { userName = highscoreEntryList[i].userName, score = highscoreEntryList[i].score } );
+        }
+        //create the table
         highscoreEntryTransformList = new List<Transform>();
-        foreach (Entry scoreEntry in highscoreEntryList)
+        foreach (Entry scoreEntry in topTen)
         {
             CreateErrorEntryTransform(scoreEntry, entryContainer, highscoreEntryTransformList);
         }
     }
 
+    //create the table
     private void CreateErrorEntryTransform(Entry highscoreEntry, Transform container, List<Transform> transformList)
     {
         float templateHeight = 55f;

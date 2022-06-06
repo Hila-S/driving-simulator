@@ -14,11 +14,15 @@ public class DistanceTravelled : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
-
-        toggle = "time"; // firebase
-        if (toggle == "distance")
+        GameObject adminFirebaseObj;
+        AdminFirebase adminFirebase;
+        adminFirebaseObj = GameObject.Find("AdminFirebase");
+        if (adminFirebaseObj != null)
         {
-            distanceString = "1"; // firbase
+            adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
+            toggle = adminFirebase.GetState(); // firebase - state
+            if (toggle == "distance")
+                distanceString = adminFirebase.GetNum("distance"); // firbase - the distance
         }
     }
 

@@ -15,6 +15,9 @@ public class EndGameSettings : MonoBehaviour
     Toggle commands_toggle;
 
     string end_input;
+    string time_input = "";
+    string distance_input = "";
+    string commands_input = "";
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +27,25 @@ public class EndGameSettings : MonoBehaviour
         distance_toggle = transform.Find("distance").GetComponent<Toggle>();
         commands_toggle = transform.Find("commands").GetComponent<Toggle>();
 
+        string toggle = "";
+        string speed_input = "";
+        
         // firebase
-        string toggle = "time";
-        string speed_input = "50";
+        GameObject adminFirebaseObj;
+        AdminFirebase adminFirebase;
+        adminFirebaseObj = GameObject.Find("AdminFirebase");
+        if (adminFirebaseObj != null)
+        {
+            adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
+            toggle = adminFirebase.GetState(); // firebase - state
+            speed_input = adminFirebase.GetSpeed(); // firebase - get the spped
+            time_input = adminFirebase.GetNum("time");
+            distance_input = adminFirebase.GetNum("distance"); // firbase - the distance
+            commands_input = adminFirebase.GetNum("commands");
+ 
+        }
+        //string toggle = "time"; // get staee
+        //string speed_input = "50";// get_speed
 
         inputSpeed.GetComponent<InputField>().placeholder.GetComponent<Text>().text = speed_input;
 
@@ -34,20 +53,20 @@ public class EndGameSettings : MonoBehaviour
         {
             time_toggle.isOn = true;
             input.text = "Enter a time in minutes:";
-            end_input = "10"; // firebase
+            end_input = time_input; // firebase - get the num time
             inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
 
         } else if (toggle == "distance")
         {
             distance_toggle.isOn = true;
             input.text = "Enter a distance in km:";
-            end_input = "5"; // firebase
+            end_input = distance_input; // firebase - get the num distance
             inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
         } else
         {
             commands_toggle.isOn = true;
             input.text = "Enter a number of commands:";
-            end_input = "3"; // firebase
+            end_input = commands_input; // firebase - get the num command
             inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
         }
 
@@ -74,19 +93,19 @@ public class EndGameSettings : MonoBehaviour
     void time_is_on()
     {
         input.text = "Enter a time in minutes:";
-        end_input = "10"; // firebase
+        end_input = time_input; // firebase - time
         inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
     }
     void distance_is_on()
     {
         input.text = "Enter a distance in km:";
-        end_input = "5"; // firebase
+        end_input = distance_input; // firebase - distance
         inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
     }
     void commands_is_on()
     {
         input.text = "Enter a number of commands:";
-        end_input = "8"; // firebase
+        end_input = commands_input; // firebase - command
         inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
     }
 

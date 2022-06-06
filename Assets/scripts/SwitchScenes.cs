@@ -8,22 +8,38 @@ public class SwitchScenes : MonoBehaviour
     [SerializeField] GameObject dayController;
     Sun sun;
 
+
+
+
     public void ChangeScene(string scenesNames)
     {
         sun = dayController.GetComponent<Sun>();
-
-        string[] namesOfScenes = scenesNames.Split(' '); 
+        string[] namesOfScenes = scenesNames.Split(' ');
         if (namesOfScenes.Length == 1)
         {
             if (namesOfScenes[0] == "MainMenu")
             {
-                bool admin = false; // firebase
-                if (admin) { SceneManager.LoadScene("AdminMenu"); }
+                bool admin = false;
+                GameObject authManagerObject;
+                AuthManager authManager;
+                authManagerObject = GameObject.Find("AuthManager");
+                if (authManagerObject != null)
+                {
+                    authManager = authManagerObject.GetComponent<AuthManager>();
+                    string userId = authManager.getUserName();
+                    if (userId == "admin")
+                    {
+                        admin = true; // firebase
+                    }
+                }
+                if (admin)
+                { SceneManager.LoadScene("AdminMenu"); }
                 else { SceneManager.LoadScene(namesOfScenes[0]); }
-            } else
+            }
+            else
             { SceneManager.LoadScene(namesOfScenes[0]); }
-            
-        } else
+        }
+        else
         {
             string firstScene = namesOfScenes[0];
             string secondScene = namesOfScenes[1];
@@ -31,12 +47,14 @@ public class SwitchScenes : MonoBehaviour
             if (firstScene == "DrivingSimulator" && secondScene == "NightSimulator")
             {
                 DateTime date = DateTime.Now;
-                string time = date.ToString().Split(' ')[1];
+                //string time = date.ToString().Split(' ')[1];
+                string time = DateTime.Now.ToString("HH:mm:ss");
+                //Debug.Log(time);
                 TimeSpan timeSpan = TimeSpan.ParseExact(time, @"hh\:mm\:ss", CultureInfo.InvariantCulture);
 
                 TimeSpan sunrise = sun.getSunriseTime();
                 TimeSpan sunset = sun.getSunsetTime();
-
+                
                 DateTime summer_winter_2022 = new DateTime(2022, 10, 30, 2, 0, 0);
                 DateTime summer_winter_2023 = new DateTime(2023, 10, 29, 2, 0, 0);
                 DateTime summer_winter_2024 = new DateTime(2024, 10, 27, 2, 0, 0);

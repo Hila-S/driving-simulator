@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
@@ -9,6 +10,8 @@ public class LogoutBtn : MonoBehaviour
     {
         Action action = () =>
         {
+            Destroy(GameObject.Find("AuthManager"));
+            SceneManager.LoadScene("LoginScene");
             // action for logout
         };
         Button btn = GetComponent<Button>();
@@ -23,5 +26,6 @@ public class LogoutBtn : MonoBehaviour
 
 
         });
+
     }
 }

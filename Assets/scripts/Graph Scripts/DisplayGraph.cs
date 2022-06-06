@@ -36,18 +36,30 @@ public class DisplayGraph : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject progressObject;
+        Progress progress;
+        progressObject = GameObject.Find("MyProgress");
+        if(progressObject!= null)
+        {
+            progress = progressObject.GetComponent<Progress>();
+            overall_values = progress.getSumArr();
+            directions_values = progress.getDirectionsArr();
+            trafficSigns_values = progress.getTrafficSignsArr();
+            pedestrians_values = progress.getPedestriansArr();
+            trafficLight_values = progress.getTrafficLightArr();
+            speedLimit_values = progress.getSpeedLimitArr();
+            collisions_values = progress.getCollisionsArr();
+            lanes_values = progress.getLanesArr();
+        }
+            
+
+
+
         toggleGroup = GetComponent<ToggleGroup>();
         //Debug.Log("First Selected" + currentSelection.name);
         barChart = chart.GetComponent<BarChart>();
-
-        overall_values = new int[] { 1, 3, 5, 7, 9, 11 };
-        directions_values = new int[] { 2, 3, 7, 7, 9, 11 };
-        trafficSigns_values = new int[] { 3, 3, 6, 7, 9, 11 };
-        pedestrians_values = new int[] { 4, 3, 5, 7, 9, 11 };
-        trafficLight_values = new int[] { 5, 3, 2, 7, 9, 11 };
-        speedLimit_values = new int[] { 6, 3, 5, 1, 9, 11 };
-        collisions_values = new int[] { 7, 3, 5, 7, 9, 11 };
-        lanes_values = new int[] { 8, 3, 5, 7, 2, 11 };
+        
+        
 
         overall_toggle = transform.Find("Overall Errors").GetComponent<Toggle>();
         overall_toggle.onValueChanged.AddListener(delegate {
