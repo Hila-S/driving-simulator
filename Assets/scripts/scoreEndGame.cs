@@ -105,12 +105,12 @@ public class scoreEndGame : MonoBehaviour
         updateGradeUser(userId, scoreGame);
         
         GameObject MyProgress;
-        Progress progress;
+        ViewProgress viewProgress;
         MyProgress = GameObject.Find("MyProgress");
         if (MyProgress != null)
         {
-            progress = MyProgress.GetComponent<Progress>();
-            progress.PersonalProgress(); // firebase - state
+            viewProgress = MyProgress.GetComponent<ViewProgress>();
+            viewProgress.PersonalProgress(); // firebase - state
         }
 
         GameObject ProgressObj;

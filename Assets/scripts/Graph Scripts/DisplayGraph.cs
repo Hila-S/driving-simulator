@@ -37,29 +37,24 @@ public class DisplayGraph : MonoBehaviour
     void Start()
     {
         GameObject progressObject;
-        Progress progress;
+        ViewProgress viewProgress;
         progressObject = GameObject.Find("MyProgress");
         if(progressObject!= null)
         {
-            progress = progressObject.GetComponent<Progress>();
-            overall_values = progress.getSumArr();
-            directions_values = progress.getDirectionsArr();
-            trafficSigns_values = progress.getTrafficSignsArr();
-            pedestrians_values = progress.getPedestriansArr();
-            trafficLight_values = progress.getTrafficLightArr();
-            speedLimit_values = progress.getSpeedLimitArr();
-            collisions_values = progress.getCollisionsArr();
-            lanes_values = progress.getLanesArr();
+            viewProgress = progressObject.GetComponent<ViewProgress>();
+            overall_values = viewProgress.getSumArr();
+            directions_values = viewProgress.getDirectionsArr();
+            trafficSigns_values = viewProgress.getTrafficSignsArr();
+            pedestrians_values = viewProgress.getPedestriansArr();
+            trafficLight_values = viewProgress.getTrafficLightArr();
+            speedLimit_values = viewProgress.getSpeedLimitArr();
+            collisions_values = viewProgress.getCollisionsArr();
+            lanes_values = viewProgress.getLanesArr();
         }
             
-
-
-
         toggleGroup = GetComponent<ToggleGroup>();
         //Debug.Log("First Selected" + currentSelection.name);
         barChart = chart.GetComponent<BarChart>();
-        
-        
 
         overall_toggle = transform.Find("Overall Errors").GetComponent<Toggle>();
         overall_toggle.onValueChanged.AddListener(delegate {

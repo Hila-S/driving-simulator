@@ -1,14 +1,3 @@
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-public class Progress : MonoBehaviour
-{
-}
-*/
-using Firebase;
 using Firebase.Database;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +7,7 @@ using Firebase.Extensions;
 using System;
 using System.Text;
 
-public class Progress : MonoBehaviour
+public class ViewProgress : MonoBehaviour
 {
     List<int> directionsArr = new List<int>();
     List<int> trafficSignsArr = new List<int>();
@@ -28,7 +17,6 @@ public class Progress : MonoBehaviour
     List<int> collisionsArr = new List<int>();
     List<int> lanesArr = new List<int>();
     List<int> sumArr = new List<int>();
-
     /*
     int[] directionsArr = new int[6];
     int[] trafficSignsArr = new int[6];
@@ -40,7 +28,7 @@ public class Progress : MonoBehaviour
     int[] sumArr = new int[6];
     */
     int counter = 0;
-    string userId ="";
+    string userId = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -57,19 +45,23 @@ public class Progress : MonoBehaviour
             authManager = authManagerObject.GetComponent<AuthManager>();
             userId = authManager.getUserName();
         }
-
         PersonalProgress();
     }
 
     void Awake()
     {
         DontDestroyOnLoad(this);
+        
     }
 
     public void PersonalProgress()
     {
+        CalCounter();
+        Progress();
+    }
 
-        //check the number of games
+    public void CalCounter()
+    {
         FirebaseDatabase dbInstance = Firebase.Database.FirebaseDatabase.GetInstance("https://driving-simulator-new-default-rtdb.firebaseio.com/");
         dbInstance.GetReference("users").GetValueAsync().ContinueWith(task =>
         {
@@ -91,6 +83,12 @@ public class Progress : MonoBehaviour
                 }
             }
         });
+    }
+
+    public void Progress()
+    {
+        FirebaseDatabase dbInstance = Firebase.Database.FirebaseDatabase.GetInstance("https://driving-simulator-new-default-rtdb.firebaseio.com/");
+        //check the number of games
         //string userId = "dsda";
         //int counter = 6;
         //take the progress in the last 6 games 
@@ -120,15 +118,18 @@ public class Progress : MonoBehaviour
                             else if (String.Compare(("game" + (counter - 1)), tempgame) == 0)
                             {
                                 boolean = true;
-                                index = counter - 2;}
+                                index = counter - 2;
+                            }
                             else if (String.Compare(("game" + (counter - 2)), tempgame) == 0)
                             {
                                 boolean = true;
-                                index = counter - 3;}
+                                index = counter - 3;
+                            }
                             else if (String.Compare(("game" + (counter - 3)), tempgame) == 0)
                             {
                                 boolean = true;
-                                index = counter - 4; }
+                                index = counter - 4;
+                            }
                             else if (String.Compare(("game" + (counter - 4)), tempgame) == 0)
                             {
                                 boolean = true;
@@ -142,8 +143,8 @@ public class Progress : MonoBehaviour
                             if (boolean == true)
                             {
                                 IDictionary dictUser = (IDictionary)game.Value;
-                               // Debug.Log("-----" + tempgame + ":  " + dictUser["followingDirections"] + " -- " + dictUser["followingTrafficSigns"] + "-" + dictUser["attentionToPedestrians"] + "-" + dictUser["followingTrafficLights"] + "-" + dictUser["SpeedLimit"] + "-" + dictUser["CollisionsWithSidewalk"] + "-" + dictUser["followingLaneCorrectly"]);
-                                insertArr(index, int.Parse(dictUser["followingDirections"].ToString()), int.Parse(dictUser["followingTrafficSigns"].ToString()), int.Parse(dictUser["attentionToPedestrians"].ToString()), int.Parse(dictUser["followingTrafficLights"].ToString()), int.Parse(dictUser["SpeedLimit"].ToString()), int.Parse(dictUser["CollisionsWithSidewalk"].ToString()), int.Parse(dictUser["followingLaneCorrectly"].ToString()));
+                                //Debug.Log("-----" + tempgame + ":  " + dictUser["followingDirections"] + " -- " + dictUser["followingTrafficSigns"] + "-" + dictUser["attentionToPedestrians"] + "-" + dictUser["followingTrafficLights"] + "-" + dictUser["SpeedLimit"] + "-" + dictUser["CollisionsWithSidewalk"] + "-" + dictUser["followingLaneCorrectly"]);
+                                insertArr(int.Parse(dictUser["followingDirections"].ToString()), int.Parse(dictUser["followingTrafficSigns"].ToString()), int.Parse(dictUser["attentionToPedestrians"].ToString()), int.Parse(dictUser["followingTrafficLights"].ToString()), int.Parse(dictUser["SpeedLimit"].ToString()), int.Parse(dictUser["CollisionsWithSidewalk"].ToString()), int.Parse(dictUser["followingLaneCorrectly"].ToString()));
                             }
                         }
                     }
@@ -152,7 +153,9 @@ public class Progress : MonoBehaviour
         });
     }
 
-    void insertArr(int i, int directions, int trafficSigns, int pedestrians, int trafficLight, int speedLimit, int collisions, int lanes)
+   
+
+    void insertArr(int directions, int trafficSigns, int pedestrians, int trafficLight, int speedLimit, int collisions, int lanes)
     {
         directionsArr.Add(directions);
         trafficSignsArr.Add(trafficSigns);
