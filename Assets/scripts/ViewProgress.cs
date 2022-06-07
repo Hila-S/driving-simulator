@@ -17,16 +17,6 @@ public class ViewProgress : MonoBehaviour
     List<int> collisionsArr = new List<int>();
     List<int> lanesArr = new List<int>();
     List<int> sumArr = new List<int>();
-    /*
-    int[] directionsArr = new int[6];
-    int[] trafficSignsArr = new int[6];
-    int[] pedestriansArr = new int[6];
-    int[] trafficLightArr = new int[6];
-    int[] speedLimitArr = new int[6];
-    int[] collisionsArr = new int[6];
-    int[] lanesArr = new int[6];
-    int[] sumArr = new int[6];
-    */
     
     string userId = "";
     // Start is called before the first frame update
@@ -55,10 +45,7 @@ public class ViewProgress : MonoBehaviour
         
     }
 
-    public void PersonalProgress()
-    {
-        CalCounter();
-    }
+    
 
     public void CalCounter()
     {
@@ -89,6 +76,8 @@ public class ViewProgress : MonoBehaviour
             Progress(counter);
         });
     }
+
+    
 
     public void Progress(int counter)
     {
@@ -158,9 +147,12 @@ public class ViewProgress : MonoBehaviour
             }
         });
     }
-
-   
-
+    /*
+    public void PersonalProgress()
+    {
+        CalCounter();
+    }
+    */
     void insertArr(int directions, int trafficSigns, int pedestrians, int trafficLight, int speedLimit, int collisions, int lanes)
     {
         directionsArr.Add(directions);

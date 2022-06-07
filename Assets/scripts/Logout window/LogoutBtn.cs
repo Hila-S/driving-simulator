@@ -11,6 +11,8 @@ public class LogoutBtn : MonoBehaviour
         Action action = () =>
         {
             Destroy(GameObject.Find("AuthManager"));
+            Destroy(GameObject.Find("MyProgress"));
+            Destroy(GameObject.Find("Progress"));
             SceneManager.LoadScene("LoginScene");
             // action for logout
         };

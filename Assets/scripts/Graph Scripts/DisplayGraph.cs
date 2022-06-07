@@ -118,7 +118,11 @@ public class DisplayGraph : MonoBehaviour
 
     public void displayGraph(int[] inputValues)
     {
-        barChart.Clear();
-        barChart.DisplayGraph(inputValues);
+        if (inputValues.Length != 0)
+        {
+            barChart.Clear();
+            barChart.DisplayGraph(inputValues);
+        }
+        
     }
 }

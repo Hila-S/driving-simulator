@@ -207,6 +207,7 @@ public class AuthManager : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
+                        //Debug.Log("sucsese to add user!");
                         UIManager.instance.LoginScreen();
                         warningRegisterText.text = "";
                     }

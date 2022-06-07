@@ -103,7 +103,8 @@ public class scoreEndGame : MonoBehaviour
             }
         });
         updateGradeUser(userId, scoreGame);
-        
+
+        /*
         GameObject MyProgress;
         ViewProgress viewProgress;
         MyProgress = GameObject.Find("MyProgress");
@@ -121,7 +122,9 @@ public class scoreEndGame : MonoBehaviour
             generalProgress = ProgressObj.GetComponent<GeneralProgress>();
             generalProgress.Init(); // firebase - state
         }
-
+        */
+        Destroy(GameObject.Find("MyProgress"));
+        Destroy(GameObject.Find("Progress"));
     }
     //update the grade of the user
     void updateGradeUser(string userId, int new_grade)

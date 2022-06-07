@@ -32,8 +32,11 @@ public class SwitchScenes : MonoBehaviour
                         admin = true; // firebase
                     }
                 }
+                Destroy(GameObject.Find("MyProgress"));
+                Destroy(GameObject.Find("Progress"));
+                Destroy(GameObject.Find("AdminFirebase"));
                 if (admin)
-                { SceneManager.LoadScene("AdminMenu"); }
+                {SceneManager.LoadScene("AdminMenu"); }
                 else { SceneManager.LoadScene(namesOfScenes[0]); }
             }
             else
