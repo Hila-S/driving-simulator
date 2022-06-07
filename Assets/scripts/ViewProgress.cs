@@ -27,11 +27,12 @@ public class ViewProgress : MonoBehaviour
     int[] lanesArr = new int[6];
     int[] sumArr = new int[6];
     */
-    int counter = 0;
+    
     string userId = "";
     // Start is called before the first frame update
     void Start()
     {
+        //userID
         GameObject authManagerObject;
         AuthManager authManager;
         authManagerObject = GameObject.Find("AuthManager");
@@ -45,7 +46,7 @@ public class ViewProgress : MonoBehaviour
             authManager = authManagerObject.GetComponent<AuthManager>();
             userId = authManager.getUserName();
         }
-        PersonalProgress();
+        CalCounter();
     }
 
     void Awake()
@@ -57,11 +58,12 @@ public class ViewProgress : MonoBehaviour
     public void PersonalProgress()
     {
         CalCounter();
-        Progress();
     }
 
     public void CalCounter()
     {
+        //counter the number games
+        int counter = 0;
         FirebaseDatabase dbInstance = Firebase.Database.FirebaseDatabase.GetInstance("https://driving-simulator-new-default-rtdb.firebaseio.com/");
         dbInstance.GetReference("users").GetValueAsync().ContinueWith(task =>
         {
@@ -81,13 +83,17 @@ public class ViewProgress : MonoBehaviour
                         }
                     }
                 }
+               
             }
+            //Debug.Log("counter1: " + counter);
+            Progress(counter);
         });
     }
 
-    public void Progress()
+    public void Progress(int counter)
     {
         FirebaseDatabase dbInstance = Firebase.Database.FirebaseDatabase.GetInstance("https://driving-simulator-new-default-rtdb.firebaseio.com/");
+       // Debug.Log("counter2: " + counter);
         //check the number of games
         //string userId = "dsda";
         //int counter = 6;

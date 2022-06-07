@@ -33,6 +33,8 @@ public class BarChart : MonoBehaviour
             newBar.transform.SetParent(transform);
             RectTransform rt = newBar.bar.GetComponent<RectTransform>();
             float normalizedValue = (float)vals[i] / (float)maxValue;
+            if (maxValue == 0)
+                normalizedValue = 0;
             rt.sizeDelta = new Vector2(rt.sizeDelta.x, chartHeight * normalizedValue);
             newBar.bar.color = colors[i % colors.Length];
             if (labels.Length <= i)
@@ -43,8 +45,8 @@ public class BarChart : MonoBehaviour
             {
                 newBar.label.text = labels[i];
             }
+            newBar.value.text = vals[i].ToString();
         }
-        
     }
 
     public void Clear()
