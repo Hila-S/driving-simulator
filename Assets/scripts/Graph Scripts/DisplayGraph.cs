@@ -122,6 +122,10 @@ public class DisplayGraph : MonoBehaviour
         {
             barChart.Clear();
             barChart.DisplayGraph(inputValues);
+        } else
+        {
+            barChart.DestroyMessage();
+            barChart.DisplayMessage();
         }
         
     }

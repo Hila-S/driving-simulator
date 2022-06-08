@@ -12,11 +12,16 @@ public class BarChart : MonoBehaviour
     List<Bar> bars = new List<Bar>();
     float chartHeight;
 
+    public Text messageText;
+
     // Start is called before the first frame update
     void Start()
     {
         labels = new string[]{ "", "", "", "", "", ""};
         chartHeight = Screen.height + GetComponent<RectTransform>().sizeDelta.y;
+
+        messageText.text = "You have not yet completed any simulations";
+        messageText.enabled = false;
     }
 
     public void DisplayGraph(int[] vals)
@@ -55,6 +60,16 @@ public class BarChart : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void DisplayMessage()
+    {
+        messageText.enabled = true;
+    }
+    public void DestroyMessage()
+    {
+        if (messageText.enabled)
+            messageText.enabled = false;
     }
 
 }
