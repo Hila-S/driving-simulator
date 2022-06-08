@@ -14,7 +14,7 @@ public class RightOfWaySign : WarningDisplayer
 
     private void Update()
     {
-        speed = target.velocity.magnitude * 3.6f * 2.5f;
+        speed = target.velocity.magnitude * 3.6f * 2f;
     }
 
     void OnTriggerEnter(Collider col)
@@ -37,7 +37,7 @@ public class RightOfWaySign : WarningDisplayer
     {
         if ((col.gameObject.name == "yield sign" || col.gameObject.name == "slow-roundabout") && enter_front)
         {
-            if (speed < 15)
+            if (speed < 25)
             {
                 slow = true;
             }

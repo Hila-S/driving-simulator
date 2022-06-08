@@ -28,7 +28,7 @@ public class DistanceTravelled : MonoBehaviour
 
     void Update()
     {
-        distanceTravelled += (Vector3.Distance(transform.position, lastPosition) * 2.5f);
+        distanceTravelled += (Vector3.Distance(transform.position, lastPosition) * 2f);
         lastPosition = transform.position;
         if (toggle == "distance")
         {

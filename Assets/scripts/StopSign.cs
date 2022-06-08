@@ -14,7 +14,7 @@ public class StopSign : WarningDisplayer
 
     private void Update()
     {
-        speed = target.velocity.magnitude * 3.6f * 2.5f;
+        speed = target.velocity.magnitude * 3.6f * 2f;
     }
 
     void OnTriggerStay(Collider col)
