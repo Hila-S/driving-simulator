@@ -8,7 +8,6 @@ public class CarPlacement : MonoBehaviour
 {
 
     private int rInt;
-    // private Vector3 position;
 
     // Start is called before the first frame update
     void Start()

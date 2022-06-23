@@ -29,7 +29,6 @@ public class CheckDirections : WarningDisplayer
 
         if (col.gameObject.name == "crossSection")
         {
-            //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
             Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
             float xAbs = Mathf.Abs(delta.x);
@@ -41,7 +40,6 @@ public class CheckDirections : WarningDisplayer
                 if (delta.x < 0)
                 {
                     enter = RIGHT;
-                    //warningCanvas.SetActive(true);
                 }
 
 
@@ -74,7 +72,6 @@ public class CheckDirections : WarningDisplayer
     {
         if (col.gameObject.name == "crossSection")
         {
-            //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
             Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
             float xAbs = Mathf.Abs(delta.x);
@@ -86,7 +83,6 @@ public class CheckDirections : WarningDisplayer
                 if (delta.x < 0)
                 {
                     exit = RIGHT;
-                    //warningCanvas.SetActive(true);
                 }
 
 
@@ -109,14 +105,6 @@ public class CheckDirections : WarningDisplayer
                 }
 
             }
-            /* else
-             {
-                 // top/bottom is hit
-                 if (delta.y > 0)
-                     Debug.Log("top");
-                 else
-                     Debug.Log("bottom");
-             }*/
             checkDir();
         }
 

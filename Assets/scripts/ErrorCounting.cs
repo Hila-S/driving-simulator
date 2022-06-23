@@ -17,14 +17,6 @@ public class ErrorCounting : MonoBehaviour
     SeparationLine separationLine;
     StopSign stopSign;
 
-    /*int counterErrorDirections = 0;
-    int counterHumanCollisions = 0;
-    int counterCollisions = 0;
-    int counterErrorRedLight = 0;
-    int counterErrorSpeed = 0;
-    int counterErrorWrongLane = 0;
-    int counterErrorSeparationLine = 0;
-    int counterErrorStopSign = 0;*/
     private int instructionErrors = 0;
     private int signErrors = 0;
     private int pedestrianErrors = 0;
@@ -50,21 +42,6 @@ public class ErrorCounting : MonoBehaviour
         correctLaneTurns = Car.GetComponent<CorrectLaneTurns>();
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-        counterErrorDirections = checkDirections.GetNumErrorDirction();
-        counterHumanCollisions = humanCollision.GetNumHumanCollisions();
-        counterCollisions = carCollision.GetNumHumanCollisions();
-        counterErrorRedLight = redLight.GetNumErrorRedLight();
-        counterErrorSpeed = checkSpeed.GetNumErrorSpeed();
-        counterErrorSeparationLine = separationLine.GetNumErrorSeparationLine();
-        counterErrorStopSign = stopSign.GetNumErrorStopSign();
-        if (counterErrorSeparationLine >= 1)
-        {
-            Debug.Log("counterErrorSeparationLine:" + counterErrorSeparationLine);
-        }
-    }*/
 
     public void Update()
     {
@@ -77,6 +54,7 @@ public class ErrorCounting : MonoBehaviour
         laneErrors = checkRightLane.GetNumErrors() + correctLaneTurns.GetNumErrors() + separationLine.GetNumErrorSeparationLine();
     }
 
+    /*group of get functions to get number of errors in each category*/
     public int GetInstructionErrors()
     {
         return instructionErrors;
@@ -105,28 +83,5 @@ public class ErrorCounting : MonoBehaviour
     {
         return laneErrors;
     }
-
-    /*public int GetErrorDirections()
-    {
-        return counterErrorDirections;
-    }
-
-    public int GetNumCollisions()
-    {
-        int num = counterHumanCollisions + counterCollisions;
-        return num;
-    }
-
-    public int GetNumErrorTrafficSign()
-    {
-        int num = counterErrorSpeed + counterErrorStopSign;
-        return num;
-    }
-
-    public int GetNumErrorTrafficLaws()
-    {
-        int num = counterErrorWrongLane + counterErrorSeparationLine + counterErrorRedLight;
-        return num;
-    }*/
 
 }

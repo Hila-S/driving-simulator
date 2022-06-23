@@ -61,7 +61,6 @@ public class ViewProgress : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
                 foreach (DataSnapshot user in snapshot.Children)
                 {
-                    //Debug.Log(user);
                     if (String.Compare(user.Key.ToString(), userId) == 0)
                     {
                         foreach (DataSnapshot game in user.Children)
@@ -72,7 +71,6 @@ public class ViewProgress : MonoBehaviour
                 }
                
             }
-            //Debug.Log("counter1: " + counter);
             Progress(counter);
         });
     }
@@ -82,10 +80,6 @@ public class ViewProgress : MonoBehaviour
     public void Progress(int counter)
     {
         FirebaseDatabase dbInstance = Firebase.Database.FirebaseDatabase.GetInstance("https://driving-simulator-new-default-rtdb.firebaseio.com/");
-       // Debug.Log("counter2: " + counter);
-        //check the number of games
-        //string userId = "dsda";
-        //int counter = 6;
         //take the progress in the last 6 games 
         bool boolean = false;
         int index = 0;
@@ -138,7 +132,7 @@ public class ViewProgress : MonoBehaviour
                             if (boolean == true)
                             {
                                 IDictionary dictUser = (IDictionary)game.Value;
-                                //Debug.Log("-----" + tempgame + ":  " + dictUser["followingDirections"] + " -- " + dictUser["followingTrafficSigns"] + "-" + dictUser["attentionToPedestrians"] + "-" + dictUser["followingTrafficLights"] + "-" + dictUser["SpeedLimit"] + "-" + dictUser["CollisionsWithSidewalk"] + "-" + dictUser["followingLaneCorrectly"]);
+                             
                                 insertArr(int.Parse(dictUser["followingDirections"].ToString()), int.Parse(dictUser["followingTrafficSigns"].ToString()), int.Parse(dictUser["attentionToPedestrians"].ToString()), int.Parse(dictUser["followingTrafficLights"].ToString()), int.Parse(dictUser["SpeedLimit"].ToString()), int.Parse(dictUser["CollisionsWithSidewalk"].ToString()), int.Parse(dictUser["followingLaneCorrectly"].ToString()));
                             }
                         }
@@ -147,12 +141,6 @@ public class ViewProgress : MonoBehaviour
             }
         });
     }
-    /*
-    public void PersonalProgress()
-    {
-        CalCounter();
-    }
-    */
     void insertArr(int directions, int trafficSigns, int pedestrians, int trafficLight, int speedLimit, int collisions, int lanes)
     {
         directionsArr.Add(directions);

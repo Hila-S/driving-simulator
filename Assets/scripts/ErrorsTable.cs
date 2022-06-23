@@ -36,10 +36,12 @@ public class ErrorsTable : MonoBehaviour
             speedErrors = errorCounting.GetSpeedErrors();
             collisionErrors = errorCounting.GetCollisionErrors();
             laneErrors = errorCounting.GetLaneErrors();
+            //giving different weights to different categories of errors
+            //take Max so as not to have a negative score 
             int scoreGame = Math.Max(0, 100 - instructionErrors - 2 * signErrors - 5 * pedestrianErrors
             - 4 * lightErrors - 2 * speedErrors - 2 * collisionErrors - 3 * laneErrors);
 
-            //add this to firebase
+            //add to firebase
             GameObject AddScoreFirebase;
             scoreEndGame scoreEndGameScript;
             AddScoreFirebase = GameObject.Find("AddScoreFirebase");
@@ -52,8 +54,6 @@ public class ErrorsTable : MonoBehaviour
             {
                 Debug.Log("error in  load scoreEndGameScript");
             }
-            //
-            
 
         }   
         entryContainer = transform.Find("ErrorsEntryContainer");
@@ -61,6 +61,7 @@ public class ErrorsTable : MonoBehaviour
 
         entryTemplate.gameObject.SetActive(false);
 
+        //list of errors in every category 
         errorEntryList = new List<ErrorEntry>()
         {
             new ErrorEntry{errorsNum = instructionErrors},
@@ -73,18 +74,16 @@ public class ErrorsTable : MonoBehaviour
         };
 
         errorEntryTransformList = new List<Transform>();
+        //make entries in the chart for all the entries in the list 
         foreach(ErrorEntry errorEntry in errorEntryList)
         {
             CreateErrorEntryTransform(errorEntry, entryContainer, errorEntryTransformList);
         }
 
-        
-
-
     }
 
     private void CreateErrorEntryTransform(ErrorEntry errorEntry, Transform container, List<Transform> transformList) {
-        float templateHeight = 70f;
+        float templateHeight = 70f; //spacing between entries in chart 
         Transform entryTransform = Instantiate(entryTemplate, container);
         RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
         entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * transformList.Count);
@@ -92,6 +91,7 @@ public class ErrorsTable : MonoBehaviour
 
         int category = transformList.Count + 1;
         string categoryString = "";
+        //titles to change according to category 
         switch (category)
         {
             case 1: categoryString = "Following directions"; break;
@@ -112,6 +112,7 @@ public class ErrorsTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
+    //object for each entry in the chart 
     private class ErrorEntry
     {
         public int errorsNum;

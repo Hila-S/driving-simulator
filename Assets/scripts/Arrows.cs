@@ -31,19 +31,6 @@ public class Arrows : MonoBehaviour
 
     void Start()
     {
-        /*
-        direction_img.enabled = false;
-        audioPlayer = audioSource.GetComponent<AudioPlayerDirections>();
-
-        toggle = "time"; // firebase
-        if (toggle == "commands")
-        {
-            numOfCommands = "3"; // firbase
-        }
-
-        GMS = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
-        isFirst = true;
-        */
 
         direction_img.enabled = false;
         audioPlayer = audioSource.GetComponent<AudioPlayerDirections>();

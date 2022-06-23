@@ -3,8 +3,6 @@ using System;
 
 public class Sun : MonoBehaviour
 {
-	//string sunrise = "";
-	//string sunset = "";
 	TimeSpan sunriseTime;
 	TimeSpan sunsetTime;
 	// Start is called before the first frame update
@@ -22,12 +20,10 @@ public class Sun : MonoBehaviour
 
 
 		double tsunrise, tsunset;
-		// Parameters : year - month - day - lat - long
+		// Parameters : year, month, day, latitude, longitude, sunrise, sunset 
 		Sunriset.SunriseSunset(year, month, day, 31.771959, 35.217018, out tsunrise, out tsunset);
 		sunriseTime = TimeSpan.FromHours(tsunrise);
 		sunsetTime = TimeSpan.FromHours(tsunset);
-		//sunrise = sunriseTime.ToString(@"hh\:mm\:ss");
-		//sunset = sunsetTime.ToString(@"hh\:mm\:ss");
 	}
 
 	public TimeSpan getSunriseTime()
@@ -52,98 +48,49 @@ public class Sun : MonoBehaviour
 		private const double NauticalTwilightAltitude = -12d;
 		private const double AstronomicalTwilightAltitude = -18d;
 	
-		/// <summary>
-		/// Compute sunrise/sunset times UTC
-		/// </summary>
-		/// <param name="year">The year</param>
-		/// <param name="month">The month of year</param>
-		/// <param name="day">The day of month</param>
-		/// <param name="lat">The latitude</param>
-		/// <param name="lng">The longitude</param>
-		/// <param name="tsunrise">The computed sunrise time (in seconds)</param>
-		/// <param name="tsunset">The computed sunset time (in seconds)</param>
+        //in this function we calculate the sunrise and sunset times 
+		//tsunrise is the sunrise time in seconds
+		//tsunset is the sunset time in seconds 
 		public static void SunriseSunset(int year, int month, int day, double lat, double lng, out double tsunrise, out double tsunset)
 		{
 			SunriseSunset(year, month, day, lng, lat, SunriseSunsetAltitude, true, out tsunrise, out tsunset);
 		}
-	
-		/// <summary>
-		/// Compute civil twilight times UTC
-		/// </summary>
-		/// <param name="year">The year</param>
-		/// <param name="month">The month of year</param>
-		/// <param name="day">The day of month</param>
-		/// <param name="lat">The latitude</param>
-		/// <param name="lng">The longitude</param>
-		/// <param name="tsunrise">The computed civil twilight time at sunrise (in seconds)</param>
-		/// <param name="tsunset">The computed civil twilight time at sunset (in seconds)</param>
+
+		//in this function we calculate the civil twilight time  
+		//tsunrise is the civil twilight time at sunrise in seconds
+		//tsunset is the civil twilight time at sunset in seconds
 		public static void CivilTwilight(int year, int month, int day, double lat, double lng, out double tsunrise, out double tsunset)
 		{
 			SunriseSunset(year, month, day, lng, lat, CivilTwilightAltitude, false, out tsunrise, out tsunset);
 		}
-	
-		/// <summary>
-		/// Compute nautical twilight times UTC
-		/// </summary>
-		/// <param name="year">The year</param>
-		/// <param name="month">The month of year</param>
-		/// <param name="day">The day of month</param>
-		/// <param name="lat">The latitude</param>
-		/// <param name="lng">The longitude</param>
-		/// <param name="tsunrise">The computed nautical twilight time at sunrise (in seconds)</param>
-		/// <param name="tsunset">The computed nautical twilight time at sunset (in seconds)</param>
+
+		//in this function we calculate the nautical twilight time  
+		//tsunrise is the civil nautical time at sunrise in seconds
+		//tsunset is the civil nautical time at sunset in seconds
 		public static void NauticalTwilight(int year, int month, int day, double lat, double lng, out double tsunrise, out double tsunset)
 		{
 			SunriseSunset(year, month, day, lng, lat, NauticalTwilightAltitude, false, out tsunrise, out tsunset);
 		}
-	
-		/// <summary>
-		/// Compute astronomical twilight times UTC
-		/// </summary>
-		/// <param name="year">The year</param>
-		/// <param name="month">The month of year</param>
-		/// <param name="day">The day of month</param>
-		/// <param name="lat">The latitude</param>
-		/// <param name="lng">The longitude</param>
-		/// <param name="tsunrise">The computed astronomical twilight time at sunrise (in seconds)</param>
-		/// <param name="tsunset">The computed astronomical twilight time at sunset (in seconds)</param>
+
+		//in this function we calculate the astronomical twilight time  
+		//tsunrise is the astronomical twilight time at sunrise in seconds
+		//tsunset is the astronomical twilight time at sunset in seconds
 		public static void AstronomicalTwilight(int year, int month, int day, double lat, double lng, out double tsunrise, out double tsunset)
 		{
 			SunriseSunset(year, month, day, lng, lat, AstronomicalTwilightAltitude, false, out tsunrise, out tsunset);
 		}
-	
-		/* +++Date last modified: 05-Jul-1997 */
-		/* Updated comments, 05-Aug-2013 */
-	
-		/*
-			SUNRISET.C - computes Sun rise/set times, start/end of twilight, and
-			the length of the day at any date and latitude
-			Written as DAYLEN.C, 1989-08-16
-			Modified to SUNRISET.C, 1992-12-01
-			(c) Paul Schlyter, 1989, 1992
-			Released to the public domain by Paul Schlyter, December 1992
-		*/
-	
-		/* Converted to C# by Mursaat 05-Feb-2017 */
-	
-		/// <summary>
-		/// A function to compute the number of days elapsed since 2000 Jan 0.0 
-		/// (which is equal to 1999 Dec 31, 0h UT)  
-		/// </summary>
-		/// <param name="y"></param>
-		/// <param name="m"></param>
-		/// <param name="d"></param>
-		/// <returns></returns>
+
+		//calculates the number of days passed since 2000 Jan 0.0 
 		private static long daysSince2000Jan0(int y, int m, int d)
 		{
 			return (367L * y - ((7 * (y + ((m + 9) / 12))) / 4) + ((275 * m) / 9) + d - 730530L);
 		}
 	
-		/* Some conversion factors between radians and degrees */
+		//conversion factors between radians and degrees
 		private const double RadDeg = 180.0 / Math.PI;
 		private const double DegRad = Math.PI / 180.0;
 	
-		/* The trigonometric functions in degrees */
+		//The trig functions in degrees
 		private static double sind(double x)
 		{
 			return Math.Sin(x * DegRad);
@@ -179,54 +126,21 @@ public class Sun : MonoBehaviour
 			return RadDeg * Math.Atan2(y, x);
 		}
 	
-		/// <summary>
-		/// The "workhorse" function for sun rise/set times
-		/// Note: year,month,date = calendar date, 1801-2099 only.             
-		/// Eastern longitude positive, Western longitude negative       
-		/// Northern latitude positive, Southern latitude negative       
-		/// The longitude value IS critical in this function! 
-		/// </summary>
-		/// <param name="year"></param>
-		/// <param name="month"></param>
-		/// <param name="day"></param>
-		/// <param name="lon"></param>
-		/// <param name="lat"></param>
-		/// <param name="altit">
-		/// the altitude which the Sun should cross
-		/// Set to -35/60 degrees for rise/set, -6 degrees
-		/// for civil, -12 degrees for nautical and -18
-		/// degrees for astronomical twilight.
-		/// </param>
-		/// <param name="upper_limb">
-		/// true -> upper limb, false -> center
-		/// Set to true (e.g. 1) when computing rise/set
-		/// times, and to false when computing start/end of twilight.
-		/// </param>
-		/// <param name="trise">where to store the rise time</param>
-		/// <param name="tset">where to store the set time</param>
-		/// <returns>
-		///  0	=	sun rises/sets this day, times stored at trise and tset
-		/// +1	=	sun above the specified "horizon" 24 hours.
-		///			trise set to time when the sun is at south,
-		///			minus 12 hours while *tset is set to the south
-		///			time plus 12 hours. "Day" length = 24 hours
-		/// -1	=	sun is below the specified "horizon" 24 hours
-		///			"Day" length = 0 hours, *trise and *tset are
-		///			both set to the time when the sun is at south.
-		/// </returns>
+		
+		//function for sun rise/set times            
 		private static int SunriseSunset(int year, int month, int day, double lon, double lat,
 						 double altit, bool upper_limb, out double trise, out double tset)
 		{
-			double d;          /* Days since 2000 Jan 0.0 (negative before) */
-			double sr;         /* Solar distance, astronomical units */
-			double sRA;        /* Sun's Right Ascension */
-			double sdec;       /* Sun's declination */
-			double sradius;    /* Sun's apparent radius */
-			double t;          /* Diurnal arc */
-			double tsouth;     /* Time when Sun is at south */
-			double sidtime;    /* Local sidereal time */
+			double d;          //days passed since January 2000
+			double sr;         //solar distance
+			double sRA;        //sun's right ascension 
+			double sdec;       //sun's declination
+			double sradius;    //sun's apparent radius 
+			double t;          //diurnal arc
+			double tsouth;     //time when sun is at south
+			double sidtime;    //local sidereal time
 	
-			int rc = 0; /* Return cde from function - usually 0 */
+			int rc = 0;
 	
 			/* Compute d of 12h local mean solar time */
 			d = daysSince2000Jan0(year, month, day) + 0.5 - lon / 360.0;
@@ -247,8 +161,7 @@ public class Sun : MonoBehaviour
 			if (upper_limb)
 				altit -= sradius;
 	
-			/* Compute the diurnal arc that the Sun traverses to reach */
-			/* the specified altitude altit: */
+			//calculate "t" that the sun traverses to reach the desired altitude
 			{
 				double cost;
 				cost = (sind(altit) - sind(lat) * sind(sdec)) /
@@ -276,30 +189,6 @@ public class Sun : MonoBehaviour
 			return rc;
 		}
 	
-		/// <summary>
-		/// Note: year,month,date = calendar date, 1801-2099 only.
-		/// Eastern longitude positive, Western longitude negative
-		/// Northern latitude positive, Southern latitude negative
-		/// The longitude value is not critical. Set it to the correct
-		/// The latitude however IS critical - be sure to get it correct
-		/// </summary>
-		/// <param name="year">
-		/// altit = the altitude which the Sun should cross
-		/// Set to -35/60 degrees for rise/set, -6 degrees
-		/// for civil, -12 degrees for nautical and -18
-		/// degrees for astronomical twilight.
-		/// </param>
-		/// <param name="month"></param>
-		/// <param name="day"></param>
-		/// <param name="lon"></param>
-		/// <param name="lat"></param>
-		/// <param name="altit"></param>
-		/// <param name="upper_limb">
-		/// true -> upper limb, true -> center
-		/// Set to true (e.g. 1) when computing day length
-		/// and to false when computing day+twilight length.
-		/// </param>
-		/// <returns></returns>
 		public static double DayLen(int year, int month, int day, double lon, double lat,
 						  double altit, bool upper_limb)
 		{
@@ -394,15 +283,7 @@ public class Sun : MonoBehaviour
 			}
 		}
 	
-		/// <summary>
-		/// Computes the Sun's equatorial coordinates RA, Decl
-		/// and also its distance, at an instant given in d,
-		/// the number of days since 2000 Jan 0.0.
-		/// </summary>
-		/// <param name="d"></param>
-		/// <param name="RA"></param>
-		/// <param name="dec"></param>
-		/// <param name="r"></param>
+        //calculates the sun's coordinates and distance and given time 
 		private static void sun_RA_dec(double d, out double RA, out double dec, out double r)
 		{
 			double lon, obl_ecl, x, y, z;
@@ -428,59 +309,23 @@ public class Sun : MonoBehaviour
 	
 		private const double INV360 = 1.0d / 360.0d;
 	
-		/// <summary>
-		/// This function reduces any angle to within the first revolution
-		/// by subtracting or adding even multiples of 360.0 until the
-		/// result is >= 0.0 and < 360.0
-		/// </summary>
-		/// <param name="x"></param>
-		/// <returns></returns>
+        //normalizes the angles to be within the range 0-360
 		private static double revolution(double x)
 		{
 			return (x - 360.0 * Math.Floor(x * INV360));
 		}
 	
-		/// <summary>
-		/// Reduce angle to within +180..+180 degrees
-		/// </summary>
-		/// <param name="x"></param>
-		/// <returns></returns>
+		//normalize angles to be within 180 degrees 
 		private static double rev180(double x)
 		{
 			return (x - 360.0 * Math.Floor(x * INV360 + 0.5));
 		}
 	
-		/// <summary>
-		/// This function computes GMST0, the Greenwich Mean Sidereal Time  
-		/// at 0h UT (i.e. the sidereal time at the Greenwhich meridian at  
-		/// 0h UT).  GMST is then the sidereal time at Greenwich at any     
-		/// time of the day.  I've generalized GMST0 as well, and define it 
-		/// as:  GMST0 = GMST - UT  --  this allows GMST0 to be computed at 
-		/// other times than 0h UT as well.  
-		/// 
-		/// While this sounds somewhat contradictory, it is very practical:
-		/// instead of computing  GMST like:
-		/// GMST = (GMST0) + UT * (366.2422/365.2422)                                                                                     
-		/// where (GMST0) is the GMST last time UT was 0 hours, one simply  
-		/// computes: GMST = GMST0 + UT                                                                                                          
-		/// where GMST0 is the GMST "at 0h UT" but at the current moment! 
-		/// 
-		/// Defined in this way, GMST0 will increase with about 4 min a     
-		/// day.  It also happens that GMST0 (in degrees, 1 hr = 15 degr)   
-		/// is equal to the Sun's mean longitude plus/minus 180 degrees!    
-		/// (if we neglect aberration, which amounts to 20 seconds of arc   
-		/// or 1.33 seconds of time)    
-		/// </summary>
-		/// <param name="d"></param>
-		/// <returns></returns>
+	
+		//calculates GMST0, the Greenwich Mean Sidereal Time   
 		private static double GMST0(double d)
 		{
 			double sidtim0;
-			/* Sidtime at 0h UT = L (Sun's mean longitude) + 180.0 degr  */
-			/* L = M + w, as defined in sunpos().  Since I'm too lazy to */
-			/* add these numbers, I'll let the C compiler do it for me.  */
-			/* Any decent C compiler will add the constants at compile   */
-			/* time, imposing no runtime or code overhead.               */
 			sidtim0 = revolution((180.0 + 356.0470 + 282.9404) + (0.9856002585 + 4.70935E-5) * d);
 			return sidtim0;
 		}

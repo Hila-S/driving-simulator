@@ -1,17 +1,4 @@
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-public class AdminFirebase : MonoBehaviour
-{
 
-    public void Admin()
-    {
-
-    }
-}
-*/
 using Firebase;
 using Firebase.Database;
 using System.Collections;

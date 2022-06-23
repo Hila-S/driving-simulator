@@ -23,14 +23,7 @@ public class HumanCollision : WarningDisplayer
             displayWarning(warningText);
         }
     }
-    /*
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.name == "Michelle")
-            counter++;
-            Debug.Log("collisionon human");
-    }
-    */
+    
     public int GetNumHumanCollisions()
     {
         return counterCollisions;

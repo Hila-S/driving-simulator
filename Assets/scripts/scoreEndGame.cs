@@ -8,8 +8,6 @@ using Firebase.Extensions;
 using System;
 using System.Text;
 
-//using Firebase.Unity.Editor;
-
 
 public class Score
 {
@@ -35,12 +33,9 @@ public class Score
 
 public class scoreEndGame : MonoBehaviour
 {
-    // private ErrorCounting errorCounting;
     GameObject authManagerObject;
     AuthManager authManager;
     int counter;
-    //public Text text;
-    //public GameObject scoreCanvas;
 
     void Start()
     {
@@ -80,7 +75,6 @@ public class scoreEndGame : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
                 foreach (DataSnapshot user in snapshot.Children)
                 {
-                    //Debug.Log(user);
                     if (String.Compare(user.Key.ToString(), userId) == 0)
                     {
                         isNewUser = false;
@@ -96,7 +90,6 @@ public class scoreEndGame : MonoBehaviour
                 }
                 if (isNewUser)
                 {
-                    ///String gameId = "game1";
                     dbrefer.Child("users").Child(userId).Child("game1").SetRawJsonValueAsync(json);
                 }
 
@@ -104,25 +97,6 @@ public class scoreEndGame : MonoBehaviour
         });
         updateGradeUser(userId, scoreGame);
 
-        /*
-        GameObject MyProgress;
-        ViewProgress viewProgress;
-        MyProgress = GameObject.Find("MyProgress");
-        if (MyProgress != null)
-        {
-            viewProgress = MyProgress.GetComponent<ViewProgress>();
-            viewProgress.PersonalProgress(); // firebase - state
-        }
-
-        GameObject ProgressObj;
-        GeneralProgress generalProgress;
-        ProgressObj = GameObject.Find("Progress");
-        if (ProgressObj != null)
-        {
-            generalProgress = ProgressObj.GetComponent<GeneralProgress>();
-            generalProgress.Init(); // firebase - state
-        }
-        */
         Destroy(GameObject.Find("MyProgress"));
         Destroy(GameObject.Find("Progress"));
     }

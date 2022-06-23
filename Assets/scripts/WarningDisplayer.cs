@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 
 
+//class to be used by each type of error we have in the simulation
 public class WarningDisplayer : MonoBehaviour
 {
     public Text text;

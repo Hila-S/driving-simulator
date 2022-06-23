@@ -20,6 +20,7 @@ public class Car : MonoBehaviour
 
     void FixedUpdate()
     {
+        /*have the car move according to the arrow keys of the user*/
         if (Input.GetKey(KeyCode.RightShift))
             speed += 1;
         if (Input.GetKey("w") || Input.GetKey(KeyCode.UpArrow))

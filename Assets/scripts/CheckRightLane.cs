@@ -8,13 +8,11 @@ public class CheckRightLane : WarningDisplayer
 {
     private String warningText = "You aren't in the right lane!";
     private int errorCounter = 0;
-    //private String enter;
     public void OnTriggerEnter(Collider col)
     {
 
         if (col.gameObject.name == "LeftLane")
         {
-            //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
             Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
             float xAbs = Mathf.Abs(delta.x);
@@ -34,7 +32,6 @@ public class CheckRightLane : WarningDisplayer
 
         if (col.gameObject.name == "RightLane")
         {
-            //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
             Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
             float xAbs = Mathf.Abs(delta.x);
@@ -48,7 +45,6 @@ public class CheckRightLane : WarningDisplayer
                     //enter = RIGHT;
                     displayWarning(warningText);
                     errorCounter++;
-                    //warningCanvas.SetActive(true);
                 }
 
             }
@@ -56,7 +52,6 @@ public class CheckRightLane : WarningDisplayer
 
         if (col.gameObject.name == "FrontLane")
         {
-            //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
             Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
             float xAbs = Mathf.Abs(delta.x);
@@ -78,7 +73,6 @@ public class CheckRightLane : WarningDisplayer
 
         if (col.gameObject.name == "BackLane")
         {
-            //text.text = colText;
             // Only works if not rotated or scaled: Vector3 delta = collider.gameObject.transform.position - gameObject.transform.position;
             Vector3 delta = col.gameObject.transform.InverseTransformPoint(gameObject.transform.position);
             float xAbs = Mathf.Abs(delta.x);

@@ -23,7 +23,6 @@ public class CountDown : MonoBehaviour
         }
         countdownDisplay.fontSize = 100;
         countdownDisplay.text = "GOOD LUCK!";
-       // GameController.instance.BeginGame();
         yield return new WaitForSeconds(1f);
         countdownDisplay.gameObject.SetActive(false);
     }

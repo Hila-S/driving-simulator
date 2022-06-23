@@ -1,12 +1,4 @@
-﻿/*
-using System.Collections;
-using UnityEngine;
-
-public class AuthManager : MonoBehaviour
-{
-
-}
-*/
+﻿
 using System.Collections;
 using UnityEngine;
 using Firebase;
@@ -14,7 +6,6 @@ using Firebase.Auth;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System;
-//using System.Text;
 
 public class AuthManager : MonoBehaviour
 {
@@ -63,7 +54,6 @@ public class AuthManager : MonoBehaviour
 
     private void InitializeFirebase()
     {
-       // Debug.Log("Setting up Firebase Auth");
         //Set the authentication instance object
         auth = FirebaseAuth.DefaultInstance;
     }
@@ -121,7 +111,6 @@ public class AuthManager : MonoBehaviour
             //User is now logged in
             //Now get the result
             User = LoginTask.Result;
-           // Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             this.user = User.DisplayName;
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
@@ -207,7 +196,6 @@ public class AuthManager : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
-                        //Debug.Log("sucsese to add user!");
                         UIManager.instance.LoginScreen();
                         warningRegisterText.text = "";
                     }

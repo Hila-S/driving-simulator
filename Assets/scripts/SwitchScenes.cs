@@ -8,9 +8,6 @@ public class SwitchScenes : MonoBehaviour
     [SerializeField] GameObject dayController;
     Sun sun;
 
-
-
-
     public void ChangeScene(string scenesNames)
     {
         sun = dayController.GetComponent<Sun>();

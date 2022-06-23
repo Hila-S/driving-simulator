@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//for when the admin chooses that the game should end based on amount of time
 public class TimePassed : MonoBehaviour
 {
     float timer = 0;
@@ -20,7 +21,7 @@ public class TimePassed : MonoBehaviour
             adminFirebase = adminFirebaseObj.GetComponent<AdminFirebase>();
             toggle = adminFirebase.GetState(); // firebase - state
             if (toggle == "time")
-                timeString = adminFirebase.GetNum("time"); // firbase - the time
+                timeString = adminFirebase.GetNum("time"); // firebase - the time
         }
     }
 
