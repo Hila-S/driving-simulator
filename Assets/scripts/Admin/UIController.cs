@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
         Instance = this;
     }
 
+    //loads the popup prefab from the resources folder
     public PopupSettings CreatePopup()
     {
         GameObject popUpGo = Instantiate(Resources.Load("UI/Popup") as GameObject);

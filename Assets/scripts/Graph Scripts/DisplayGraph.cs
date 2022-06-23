@@ -53,10 +53,11 @@ public class DisplayGraph : MonoBehaviour
         }
             
         toggleGroup = GetComponent<ToggleGroup>();
-        //Debug.Log("First Selected" + currentSelection.name);
+        
         barChart = chart.GetComponent<BarChart>();
 
         overall_toggle = transform.Find("Overall Errors").GetComponent<Toggle>();
+        //present the correct graph according to which category toggle is pressed
         overall_toggle.onValueChanged.AddListener(delegate {
             if (overall_toggle.isOn)
             {
@@ -112,7 +113,7 @@ public class DisplayGraph : MonoBehaviour
                 displayGraph(lanes_values);
             }
         });
-
+        //by default when we enter the progress scene the overall errors graph is presented
         displayGraph(overall_values);
     }
 

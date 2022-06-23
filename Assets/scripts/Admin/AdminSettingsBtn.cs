@@ -11,6 +11,7 @@ public class AdminSettingsBtn : MonoBehaviour
     {
         getAdminData = popup.GetComponent<GetAdminData>();
 
+        //when the admin presses the "done" button, we want to save his input in the database
         Action action = () =>
         {
             set_input();
@@ -28,6 +29,7 @@ public class AdminSettingsBtn : MonoBehaviour
 
     void set_input()
     {
+        //we will get this data from the admin's input
         string toggle = getAdminData.get_toggle();
         string end_input = getAdminData.get_end_input();
         string speed_input = getAdminData.get_speed_input();

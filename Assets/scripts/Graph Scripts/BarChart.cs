@@ -32,11 +32,13 @@ public class BarChart : MonoBehaviour
             labels[vals.Length - 1] = "Most Recent";
         }
         int maxValue = vals.Max();
+        //runs through the array of amount of errors in each game
         for (int i = 0; i < vals.Length; i++)
         {
             Bar newBar = Instantiate(barPrefab) as Bar;
             newBar.transform.SetParent(transform);
             RectTransform rt = newBar.bar.GetComponent<RectTransform>();
+            //normalize the values so that the highest bar is the height of the window we have for the graph
             float normalizedValue = (float)vals[i] / (float)maxValue;
             if (maxValue == 0)
                 normalizedValue = 0;
@@ -54,6 +56,8 @@ public class BarChart : MonoBehaviour
         }
     }
 
+    //clear the graph on the screen every time another button is pressed to change category so that the graphs change
+    //and dont have one on top of another 
     public void Clear()
     {
         foreach (Transform child in transform)
@@ -61,11 +65,12 @@ public class BarChart : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
-
+    //if the user has no previous simulations, we present him with a message 
     public void DisplayMessage()
     {
         messageText.enabled = true;
     }
+   
     public void DestroyMessage()
     {
         if (messageText.enabled)

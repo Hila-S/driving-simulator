@@ -39,7 +39,7 @@ public class RankingTable : MonoBehaviour
         {
             highscoreEntryList.Add(new Entry { userName = kvp.Key, score = kvp.Value });
         }
-        //sorting
+        //sorting so that the table will be from highest score to lowest
         for (int i = 0; i < highscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscoreEntryList.Count; j++)
@@ -52,7 +52,7 @@ public class RankingTable : MonoBehaviour
                 }
             }
         }
-        //top ten 
+        //top ten highest scores in the database
         List<Entry> topTen = new List<Entry>();
         int numIterations = Math.Min(10, highscoreEntryList.Count);
         for (int i=0; i< numIterations; i++)
@@ -67,7 +67,7 @@ public class RankingTable : MonoBehaviour
         }
     }
 
-    //create the table
+    //create an entry in the table
     private void CreateErrorEntryTransform(Entry highscoreEntry, Transform container, List<Transform> transformList)
     {
         float templateHeight = 55f;
@@ -78,6 +78,7 @@ public class RankingTable : MonoBehaviour
 
         int rank = transformList.Count + 1;
         string rankString = "";
+        //title string for each entry
         switch (rank)
         {
             default:
@@ -96,7 +97,7 @@ public class RankingTable : MonoBehaviour
         entryTransform.Find("user name text").GetComponent<Text>().text = name;
         entryTransform.Find("score text").GetComponent<Text>().text = score.ToString();
         entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
-
+        //adding trophy image to first 3 highest scored players
         switch (rank)
         {
             default:
@@ -112,6 +113,7 @@ public class RankingTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
+    //object or each entry created for the table 
     private class Entry
     {
         public string userName;

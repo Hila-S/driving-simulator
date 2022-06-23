@@ -44,11 +44,11 @@ public class EndGameSettings : MonoBehaviour
             commands_input = adminFirebase.GetNum("commands");
  
         }
-        //string toggle = "time"; // get staee
-        //string speed_input = "50";// get_speed
+        
 
         inputSpeed.GetComponent<InputField>().placeholder.GetComponent<Text>().text = speed_input;
-
+        // based on the chosen toggle currently (admin's choice of how the game ends) we check the toggle box on the screen
+        // the text on the screen changes accordingly 
         if (toggle == "time")
         {
             time_toggle.isOn = true;
@@ -69,7 +69,7 @@ public class EndGameSettings : MonoBehaviour
             end_input = commands_input; // firebase - get the num command
             inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
         }
-
+        //we add an event that happens when each toggle is pressed
         time_toggle.onValueChanged.AddListener(delegate {
             if (time_toggle.isOn)
             {
@@ -89,7 +89,7 @@ public class EndGameSettings : MonoBehaviour
             }
         });
     }
-
+    //the functions called for each toggle
     void time_is_on()
     {
         input.text = "Enter a time in minutes:";
@@ -109,6 +109,7 @@ public class EndGameSettings : MonoBehaviour
         inputEnd.GetComponent<InputField>().placeholder.GetComponent<Text>().text = end_input;
     }
 
+    //returns the toggle that is currently pressed
     public Toggle currentSelection
     {
         get { return toggleGroup.ActiveToggles().FirstOrDefault(); }

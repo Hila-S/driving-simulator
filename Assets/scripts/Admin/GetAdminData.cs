@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//medeator script that allows us to access the data and send it to the database
 public class GetAdminData : MonoBehaviour
 {
 
