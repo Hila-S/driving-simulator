@@ -1,7 +1,7 @@
 # driving-simulator
 Final Project - A driving game developed in Unity to help prepare for a driving test.  
 
-Game Features:
+Game Tools:
 * Engine: Unity 3D
 * Database: Firebase
 
