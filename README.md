@@ -1,13 +1,17 @@
 # driving-simulator
 Final Project - A driving game developed in Unity to help prepare for a driving test.  
 
-Game Tools:
+**Game Tools:**
 * Engine: Unity 3D
 * Database: Firebase
 
-The game includes enforcement of traffic laws such as speed limits, traffic signs and paying attention to pedestrians.  
-Each user can see a graph showing their progress in recent simulations.  
-In addition, there is an option to display the ten users with the highest score.
+**Game Features:**
+* The game includes enforcement of traffic laws such as speed limits, traffic signs and paying attention to pedestrians. 
+* Each user sees his mistakes after the simulation. 
+* Each user can see a graph showing their progress in the latest simulations.
+* Each user can see the ten users with the highest score.
+* The admin is able to change certain game settings.
+
 
 <img src="https://user-images.githubusercontent.com/80850421/184353841-7ba89d9d-c07c-48c9-95c2-90df8b36031b.png" width=50% height=50%>
 
